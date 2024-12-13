@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<nav class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <!-- Logo y Nombre -->
+    <div class="flex items-center">
+      <img
+        src=""
+        alt="Gallinas Libres Logo"
+        width="32"
+        height="32"
+        class="mr-2"
+      />
+      <span class="text-xl font-semibold text-gray-800">Gallinas Libres</span>
+    </div>
+
+    <!-- Menú -->
+    <div class="hidden md:flex space-x-8">
+      <a href="#inicio" class="text-gray-700 hover:text-yellow-500 font-medium">
+        Inicio
+      </a>
+      <a
+        href="#productos"
+        class="text-gray-700 hover:text-yellow-500 font-medium"
+      >
+        Productos
+      </a>
+      <a href="#valores" class="text-gray-700 hover:text-yellow-500 font-medium">
+        Valores
+      </a>
+      <a href="#contacto" class="text-gray-700 hover:text-yellow-500 font-medium">
+        Contacto
+      </a>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="md:hidden">
+      <button
+        class="text-gray-700 hover:text-yellow-500 focus:outline-none"
+        aria-label="Abrir menú"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>

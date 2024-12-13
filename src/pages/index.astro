@@ -1,11 +1,171 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+  {/* Hero Section */}
+  <section class="relative bg-white">
+    <div
+      class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 py-16 px-4 sm:px-6 lg:px-8"
+    >
+      <!-- Sección de texto -->
+      <div>
+        <h1 class="text-4xl font-extrabold text-black sm:text-5xl lg:text-6xl">
+          Huevos frescos y orgánicos
+        </h1>
+        <p class="mt-6 text-lg text-gray-600">
+          Disfruta del sabor auténtico y la calidad superior de nuestros huevos
+          de gallinas felices y libres.
+        </p>
+        <div class="mt-8">
+          <a
+            href="#productos"
+            class="bg-yellow-500 text-white px-6 py-3 text-lg font-semibold rounded-md shadow hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+          >
+            Comprar ahora
+          </a>
+        </div>
+      </div>
+
+      <!-- Sección de imagen -->
+      <div>
+        <img
+          src="/img/gallinas-hero.webp"
+          alt="Gallinas felices"
+          class="w-full h-[300px] md:h-[400px] object-cover rounded-lg shadow-lg"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Valores */}
+  <section id="valores" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2
+        class="text-base text-yellow-600 font-semibold tracking-wide uppercase"
+      >
+        Nuestros valores
+      </h2>
+      <p
+        class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+      >
+        Lo mejor para vos y para las gallinas
+      </p>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+        En Gallinas Libres, nos comprometemos con el bienestar animal y la
+        calidad de nuestros productos.
+      </p>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Valores individuales */}
+        <div class="flex items-center">
+          <div
+            class="bg-yellow-500 h-12 w-12 rounded-lg flex items-center justify-center mr-4"
+            aria-hidden="true"
+          >
+          </div>
+          <div>
+            <h3 class="text-lg font-medium text-gray-900">100% Orgánico</h3>
+            <p class="text-gray-500">
+              Nuestras gallinas se alimentan exclusivamente de granos orgánicos.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center">
+          <div
+            class="bg-yellow-500 h-12 w-12 rounded-lg flex items-center justify-center mr-4"
+            aria-hidden="true"
+          >
+          </div>
+          <div>
+            <h3 class="text-lg font-medium text-gray-900">Gallinas felices</h3>
+            <p class="text-gray-500">
+              Nuestras gallinas viven en espacios abiertos y disfrutan del sol.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center">
+          <div
+            class="bg-yellow-500 h-12 w-12 rounded-lg flex items-center justify-center mr-4"
+            aria-hidden="true"
+          >
+          </div>
+          <div>
+            <h3 class="text-lg font-medium text-gray-900">
+              Frescura garantizada
+            </h3>
+            <p class="text-gray-500">
+              Recolectamos y entregamos nuestros huevos diariamente.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center">
+          <div
+            class="bg-yellow-500 h-12 w-12 rounded-lg flex items-center justify-center mr-4"
+            aria-hidden="true"
+          >
+          </div>
+          <div>
+            <h3 class="text-lg font-medium text-gray-900">Sabor auténtico</h3>
+            <p class="text-gray-500">
+              Experimenta el verdadero sabor de los huevos de campo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Producto */}
+  <section id="productos" class="bg-yellow-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-extrabold text-gray-900 text-center">
+        Nuestro Producto
+      </h2>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto text-center">
+        Huevos frescos de gallinas felices, criadas en libertad y alimentadas
+        con productos orgánicos.
+      </p>
+      <div class="mt-10 flex justify-center">
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg max-w-sm">
+          <img
+            src=""
+            alt="Huevos frescos de gallinas felices"
+            class="w-full h-64 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="font-bold text-xl text-gray-800">
+              Huevos de Gallinas Felices
+            </h3>
+            <p class="mt-2 text-gray-700">
+              Disfruta del sabor auténtico y la calidad superior de nuestros
+              huevos. Cada huevo es una muestra de nuestro compromiso con el
+              bienestar animal y la producción sostenible.
+            </p>
+            <div class="mt-4 flex gap-2">
+              <span
+                class="bg-yellow-200 text-yellow-800 text-sm px-3 py-1 rounded-full"
+                >Orgánico</span
+              >
+              <span
+                class="bg-green-200 text-green-800 text-sm px-3 py-1 rounded-full"
+                >Crianza libre</span
+              >
+              <span
+                class="bg-blue-200 text-blue-800 text-sm px-3 py-1 rounded-full"
+                >100% natural</span
+              >
+            </div>
+            <button
+              class="mt-6 w-full bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2"
+            >
+              Hacer pedido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
