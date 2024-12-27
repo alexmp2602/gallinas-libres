@@ -55,7 +55,7 @@ import Clock from "../components/icons/Clock.astro";
 <Layout>
   {/* Hero Section */}
   <section
-    class="relative bg-gradient-to-r from-yellow-200 to-green-200 py-12 px-6 mt-16"
+    class="relative bg-gradient-to-r from-yellow-200 to-green-200 py-8 px-6 mt-16"
   >
     <div
       class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-10"
@@ -72,18 +72,20 @@ import Clock from "../components/icons/Clock.astro";
           mayoristas. Visitanos y llevá la mejor calidad directamente desde
           nuestra granja.
         </p>
-        <div class="gap-2 mt-6 flex items-center space-y-0 space-x-4">
+        <div
+          class="gap-2 mt-6 flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 space-x-4 w-full"
+        >
           <a
             href="#mayoristas"
             data-scroll="#mayoristas"
-            class="hero-button bg-green-600 text-white px-6 py-3 text-lg font-semibold rounded-md shadow hover:bg-green-800 transition-all"
+            class="hero-button bg-green-600 text-white p-3 text-lg font-semibold rounded-md shadow hover:bg-green-800 transition-all flex-1 text-center"
           >
             Comprar al por mayor
           </a>
           <a
             href="#nuestra-granja"
             data-scroll="#nuestra-granja"
-            class="hero-button bg-yellow-600 text-white px-6 py-3 text-lg font-semibold rounded-md shadow hover:bg-yellow-700 transition-all"
+            class="hero-button bg-yellow-600 text-white p-3 text-lg font-semibold rounded-md shadow hover:bg-yellow-700 transition-all flex-1 text-center"
           >
             Conocer más
           </a>
@@ -103,7 +105,7 @@ import Clock from "../components/icons/Clock.astro";
   </section>
 
   {/* Sección de Mayoristas */}
-  <section id="mayoristas" class="py-12 bg-yellow-50">
+  <section id="mayoristas" class="py-8 bg-yellow-50">
     <div class="max-w-7xl mx-auto px-6 sm:px-8">
       <!-- Título -->
       <div class="text-center mb-6">
@@ -113,7 +115,7 @@ import Clock from "../components/icons/Clock.astro";
           Compra Directa para Mayoristas
         </h2>
         <p
-          class="mt-2 text-base text-yellow-600 font-semibold tracking-wide uppercase"
+          class="mt-4 text-base text-yellow-600 font-semibold tracking-wide uppercase"
         >
           ¡Visitá nuestra granja y llevá la mejor calidad al por mayor! Ideal
           para negocios y distribuidores.
@@ -165,7 +167,7 @@ import Clock from "../components/icons/Clock.astro";
               href="https://wa.link/uurvm0"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center bg-green-600 text-white px-6 py-3 text-lg font-semibold rounded-lg shadow-lg hover:bg-green-600 transform hover:scale-105 transition-all duration-200 ease-in-out"
+              class="gap-2 inline-flex items-center bg-green-600 text-white px-6 py-3 text-sm sm:text-lg font-semibold rounded-lg shadow-lg hover:bg-green-600 transform hover:scale-105 transition-all duration-200 ease-in-out"
               aria-label="Consultar disponibilidad para compras mayoristas"
             >
               <Whatsapp />
@@ -176,24 +178,22 @@ import Clock from "../components/icons/Clock.astro";
       </div>
 
       <!-- Llamado a la acción -->
-      <div class="flex flex-col items-center mt-10 text-center px-4">
+      <div class="flex flex-col items-start lg:items-center mt-10 text-center">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">
           Dirección y Horarios
         </h3>
-        <div class="flex flex-col items-start space-y-4">
+        <div
+          class="flex flex-col items-start space-y-4 text-xs sm:text-sm lg:text-lg"
+        >
           <!-- Dirección -->
-          <div class="flex items-center">
-            <Pin class="text-yellow-500 h-5 w-5" />
-            <p class="text-gray-700 text-xs lg:text-sm">
-              Tranquera 1286, Goldney, Buenos Aires, Argentina
-            </p>
+          <div class="flex items-center gap-2">
+            <Pin />
+            <p>Tranquera 1286, Goldney, Buenos Aires, Argentina</p>
           </div>
           <!-- Horarios -->
-          <div class="flex items-center">
-            <Clock class="text-yellow-500 h-5 w-5" />
-            <p class="text-gray-700 text-xs lg:text-sm">
-              Lunes a Sábado, 8:00 AM - 6:00 PM
-            </p>
+          <div class="flex items-center gap-2">
+            <Clock />
+            <p>Lunes a Sábado, 8:00 AM - 6:00 PM</p>
           </div>
         </div>
       </div>
@@ -250,7 +250,7 @@ import Clock from "../components/icons/Clock.astro";
                 href="https://wa.link/2tkj05"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-4 mb-2 inline-flex items-center bg-green-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-600 transition-transform duration-200"
+                class="gap-2 text-xs lg:text-lg mt-4 mb-2 inline-flex items-center bg-green-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-600 transition-transform duration-200"
                 aria-label="Consultar por WhatsApp sobre Maple de 30 huevos frescos"
               >
                 <Whatsapp />
@@ -344,7 +344,7 @@ import Clock from "../components/icons/Clock.astro";
   </section>
 
   {/* Mapa */}
-  <section id="contacto" class="py-12 bg-gray-50">
+  <section id="contacto" class="py-8 bg-gray-50">
     <div class="max-w-7xl mx-auto px-8 text-center space-y-6">
       {/* Encabezado */}
       <div class="space-y-2">
@@ -391,15 +391,17 @@ import Clock from "../components/icons/Clock.astro";
   </section>
 
   {/* Footer */}
-  <footer class="bg-gray-800 text-white py-10">
+  <footer class="bg-gray-800 text-white py-10 text-xs sm:text-sm">
     <div
-      class="flex flex-col md:flex-row justify-around items-stretch max-w-7xl mx-auto px-6 gap-6 md:gap-8 text-center md:text-left"
+      class="flex flex-col md:flex-row justify-between items-center md:items-start max-w-7xl mx-auto px-6 gap-6 md:gap-8"
     >
       <!-- Información de contacto -->
-      <div class="space-y-4 flex-grow flex flex-col justify-center">
-        <div class="flex items-center">
+      <div
+        class="text-xs sm:text-lg space-y-4 flex-grow md:text-left text-center"
+      >
+        <div class="flex items-center gap-2">
           <Whatsapp />
-          <p class="text-sm">
+          <p>
             Tel:
             <a
               href="tel:+5492324560122"
@@ -409,33 +411,33 @@ import Clock from "../components/icons/Clock.astro";
             </a>
           </p>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center gap-2">
           <Clock />
-          <p class="text-sm">Lunes a Sábado, 8:00 AM - 6:00 PM</p>
+          <p>Lunes a Sábado, 8:00 AM - 6:00 PM</p>
         </div>
-        <div class="flex items-center">
-          <Pin />
+        <div class="flex items-center gap-2">
+          <Pin class="flex-shrink-0" />
           <a
             href="https://www.google.com/maps/place/Gallinas+Libres/@-34.6146788,-59.2777023,588m/data=!3m1!1e3!4m6!3m5!1s0x95bc7b0cb77f91b7:0x3d38a2a272ef63cd!8m2!3d-34.6146832!4d-59.2751274!16s%2Fg%2F11wx1r8xff!5m1!1e4?hl=es-419&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm text-yellow-500 hover:underline transition duration-300 "
+            class="text-yellow-500 hover:underline transition duration-300 leading-none"
           >
-            Tranquera 1286, Goldney, Buenos Aires, Argentina
+            Tranquera 1286, Goldney, Buenos Aires
           </a>
         </div>
       </div>
 
       <!-- Logo y derechos reservados -->
-      <div class="flex flex-col items-center justify-center flex-grow h-full">
+      <div
+        class="flex flex-col items-center justify-center flex-grow text-center md:text-left"
+      >
         <img
           src="/img/logo.webp"
           alt="Gallinas Libres Logo"
           class="h-24 w-auto"
         />
-        <p class="text-sm">
-          © 2024 Gallinas Libres. Todos los derechos reservados.
-        </p>
+        <p>© 2024 Gallinas Libres. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
