@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   {/* Hero Section */}
   <section
-    class="relative bg-gradient-to-r from-yellow-100 to-green-100 py-10 px-6 mt-16"
+    class="relative bg-gradient-to-r from-yellow-200 to-green-200 py-12 px-6 mt-16"
   >
     <div
       class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-10"
@@ -13,32 +13,162 @@ import Layout from "../layouts/Layout.astro";
       <!-- Texto -->
       <div class="text-center md:text-left">
         <h1
-          class="hero-heading text-4xl font-extrabold text-gray-900 sm:text-5xl lg:text-6xl"
+          class="hero-heading text-5xl font-extrabold text-gray-900 sm:text-6xl lg:text-7xl"
         >
-          Huevos frescos y orgánicos
+          Compra Directa en el Campo
         </h1>
         <p class="hero-paragraph mt-4 text-lg text-gray-800">
-          Disfruta del sabor auténtico y la calidad superior de nuestros huevos
-          de gallinas felices y libres.
+          Distribuimos huevos frescos y orgánicos al por mayor para negocios y
+          mayoristas. Visitanos y llevá la mejor calidad directamente desde
+          nuestra granja.
         </p>
-        <div class="mt-6 flex justify-center md:justify-start">
+        <div
+          class="mt-6 flex flex-col sm:flex-row sm:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
+        >
+          <a
+            href="#mayoristas"
+            class="hero-button bg-green-500 text-white px-6 py-3 text-lg font-semibold rounded-md shadow hover:bg-green-600 transition-all"
+          >
+            Comprar al por mayor
+          </a>
           <a
             href="#nuestra-granja"
-            class="hero-button inline-block bg-yellow-500 text-white px-6 py-3 text-lg font-semibold rounded-md shadow hover:bg-yellow-600 transition-all"
+            class="hero-button bg-yellow-500 text-white px-6 py-3 text-lg font-semibold rounded-md shadow hover:bg-yellow-600 transition-all"
           >
-            Ver producto
+            Conocer más
           </a>
         </div>
       </div>
 
-      <!-- Imagen centrada en su columna -->
+      <!-- Imagen destacada -->
       <div class="flex justify-center">
         <img
           src="/img/logo.webp"
-          alt="Logo Gallinas Libres"
-          class="w-3/4 max-w-md rounded-lg"
+          alt="Distribución mayorista de huevos frescos"
+          class="w-full max-w-md rounded-lg shadow-lg"
           loading="lazy"
         />
+      </div>
+    </div>
+  </section>
+
+  {/* Sección de Mayoristas */}
+  <section id="mayoristas" class="py-12 bg-yellow-50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <!-- Título -->
+      <div class="text-center mb-6">
+        <h1
+          class="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+        >
+          Compra Directa para Mayoristas
+        </h1>
+        <p
+          class="mt-2 text-base text-yellow-600 font-semibold tracking-wide uppercase"
+        >
+          ¡Visitá nuestra granja y llevá la mejor calidad al por mayor! Ideal
+          para negocios y distribuidores.
+        </p>
+      </div>
+
+      <!-- Contenido dividido en dos columnas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <!-- Imagen destacada -->
+        <div class="flex justify-center">
+          <img
+            src="/img/webp/granja-mayorista.webp"
+            alt="Mayoristas comprando directamente en la granja"
+            class="rounded-lg shadow-lg max-w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Texto y Beneficios -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800">
+            Ventajas de Comprar Directamente en Nuestra Granja
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li class="flex items-start">
+              <svg
+                class="w-6 h-6 text-green-500 mr-3"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-700">
+                <strong>Precios mayoristas:</strong> Descuentos exclusivos al comprar
+                directamente en el campo.
+              </span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="w-6 h-6 text-green-500 mr-3"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-700">
+                <strong>Frescura garantizada:</strong> Huevos recién recolectados,
+                listos para ser llevados.
+              </span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="w-6 h-6 text-green-500 mr-3"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-700">
+                <strong>Ubicación estratégica:</strong> Fácil acceso desde Capital
+                Federal y alrededores.
+              </span>
+            </li>
+          </ul>
+          <div class="mt-6">
+            <a
+              href="https://wa.link/vmk1x2"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-green-500 text-white px-6 py-3 text-lg font-semibold rounded-md shadow hover:bg-green-600 transition-transform"
+              aria-label="Consultar sobre compras mayoristas"
+            >
+              Consultar disponibilidad
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Llamado a la acción -->
+      <div class="mt-12 text-center">
+        <h3 class="text-lg font-semibold text-gray">Dirección:</h3>
+        <p class="text-gray-700 mt-2">
+          Tranquera 1286, Goldney, Buenos Aires, Argentina
+        </p>
+        <p class="mt-2 text-gray">
+          Horarios de atención: Lunes a Sábado, 8:00 AM - 6:00 PM
+        </p>
       </div>
     </div>
   </section>
@@ -82,10 +212,10 @@ import Layout from "../layouts/Layout.astro";
                 loading="lazy"
               />
               <h3 class="text-lg font-bold text-gray-900">
-                Maples de 30 huevos
+                Maples de 30 huevos (Pedido mínimo: 10 maples)
               </h3>
               <p class="text-gray-600 mt-2">
-                Directo del campo, con la frescura y calidad que nos distingue.
+                Ideal para negocios y grandes distribuidores.
               </p>
               <a
                 href="https://wa.link/vmk1x2"
