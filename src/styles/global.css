@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* BASE RESETS */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply bg-white text-neutral-900;
+  }
+  body {
+    @apply antialiased font-sans leading-relaxed;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold leading-tight text-neutral-900;
+  }
+  p {
+    @apply leading-relaxed text-neutral-700;
+  }
+  a {
+    @apply text-orange-600 hover:underline;
+  }
+  button,
+  [type="button"],
+  [type="submit"] {
+    @apply cursor-pointer;
+  }
+  ::selection {
+    @apply bg-orange-500 text-white;
+  }
+}
+
+/* TYPOGRAPHY */
+@layer base {
+  :root {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+}
+
+/* UTILITIES */
+@layer utilities {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .glass {
+    backdrop-filter: blur(10px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* COMPONENTS */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 font-medium transition duration-300 ease-in-out;
+  }
+  .btn-primary {
+    @apply bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
+  }
+  .btn-secondary {
+    @apply bg-neutral-200 text-neutral-800 hover:bg-neutral-300;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-6 text-center;
+  }
+}

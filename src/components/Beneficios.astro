@@ -1,0 +1,38 @@
+---
+import IconEgg from "./icons/IconEgg.astro";
+import IconLeaf from "./icons/IconLeaf.astro";
+import IconFeather from "./icons/IconFeather.astro";
+import IconBuildingCommunity from "./icons/IconBuildingCommunity.astro";
+---
+
+<section class="section">
+  <div class="container text-center">
+    <h2 class="section-title">¿Por qué huevos de gallinas libres?</h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mt-8">
+      <div class="flex flex-col items-center text-center">
+        <IconFeather size={64} color="#f97316" class="mb-4" />
+        <h3 class="text-lg font-semibold mb-2">Bienestar animal</h3>
+        <p class="text-neutral-700">
+          Gallinas libres, felices y cuidadas con respeto.
+        </p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <IconEgg size={64} color="#f97316" class="mb-4" />
+        <h3 class="text-lg font-semibold mb-2">Huevos frescos</h3>
+        <p class="text-neutral-700">
+          Calidad y sabor garantizados en cada huevo.
+        </p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <IconLeaf size={64} color="#f97316" class="mb-4" />
+        <h3 class="text-lg font-semibold mb-2">Sostenibilidad</h3>
+        <p class="text-neutral-700">Prácticas responsables con el ambiente.</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <IconBuildingCommunity size={64} color="#f97316" class="mb-4" />
+        <h3 class="text-lg font-semibold mb-2">Productores locales</h3>
+        <p class="text-neutral-700">Apoyamos la economía local y justa.</p>
+      </div>
+    </div>
+  </div>
+</section>
