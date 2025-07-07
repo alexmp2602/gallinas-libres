@@ -2,16 +2,27 @@
 
 ---
 
-<header class="container py-2 flex justify-between items-center">
-  <a href="/">
+<header role="banner" class="container py-2 flex justify-between items-center">
+  <a href="/" aria-label="Ir a inicio">
     <img
       src="/img/logo/logo_2-1_transparente.png"
-      alt="Gallinas Libres"
+      alt="Gallinas Libres - Logo"
       class="h-16"
+      loading="lazy"
     />
   </a>
-  <nav class="space-x-4">
-    <a href="#nosotros" class="hover:underline">Nosotros</a>
-    <a href="#contacto" class="hover:underline">Contacto</a>
+  <nav aria-label="Menú principal" class="space-x-4">
+    <a
+      href="#nosotros"
+      class="hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+    >
+      Nosotros
+    </a>
+    <a
+      href="#contacto"
+      class="hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+    >
+      Contacto
+    </a>
   </nav>
 </header>

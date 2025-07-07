@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 const { title = "Gallinas Libres" } = Astro.props;
@@ -10,13 +11,31 @@ const { title = "Gallinas Libres" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <meta
+      name="description"
+      content="Gallinas Libres - Huevos frescos de gallinas felices y libres, promoviendo bienestar animal y alimentación sana."
+    />
+    <meta name="theme-color" content="#f97316" />
+    <link rel="icon" href="/icons/icon_512.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icons/icon_512.png" />
+    <link rel="manifest" href="/manifest.json" />
   </head>
   <body>
     <Header />
-    <main>
+    <main id="content">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((reg) => console.log("Service Worker registrado:", reg.scope))
+          .catch((err) =>
+            console.error("Error al registrar Service Worker:", err)
+          );
+      }
+    </script>
   </body>
 </html>

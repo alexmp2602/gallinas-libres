@@ -2,18 +2,23 @@
 import IconBrandWhatsapp from "./icons/IconBrandWhatsapp.astro";
 ---
 
-<section id="contacto" class="section bg-orange-50">
+<section
+  id="contacto"
+  aria-labelledby="contacto-title"
+  class="section bg-orange-50"
+>
   <div class="container text-center">
-    <h2 class="section-title">Contactanos</h2>
-    <p class="max-w-xl mx-auto text-lg text-neutral-700 mb-6">
-      Si querés sumarte o consultar sobre nuestros huevos de gallinas libres,
-      escribinos por WhatsApp. Estamos acá para ayudarte y responder tus dudas.
+    <h2 id="contacto-title" class="section-title">Contactanos</h2>
+    <p class="max-w-2xl mx-auto text-lg text-neutral-700 mb-6">
+      Abastecé tu comercio con huevos frescos de gallinas libres, con entregas
+      regulares, calidad garantizada y precios competitivos. Sumate a nuestra
+      red de mayoristas que eligen productos responsables y de confianza.
     </p>
     <a
-      href="https://wa.me/5492324560122"
+      href="https://wa.me/5492324560122?text=Hola!%20Estoy%20interesado%20en%20consultar%20sobre%20huevos%20mayoristas."
       target="_blank"
       rel="noopener"
-      class="btn btn-primary inline-flex items-center gap-2"
+      class="btn btn-primary inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
     >
       <IconBrandWhatsapp size={24} color="#fff" />
       <span>Contactar por WhatsApp</span>
