@@ -5,43 +5,68 @@ import IconFeather from "./icons/IconFeather.astro";
 import IconBuildingCommunity from "./icons/IconBuildingCommunity.astro";
 ---
 
-<section aria-labelledby="beneficios-title" class="section">
-  <div class="container text-center">
-    <h2 id="beneficios-title" class="section-title">
+<section
+  id="beneficios"
+  aria-labelledby="beneficios-title"
+  class="section bg-white overflow-hidden"
+>
+  <div
+    id="beneficiosContent"
+    class="container text-center space-y-8 js:opacity-0 js:translate-y-6 js:transition js:duration-700 js:ease-out"
+  >
+    <h2 id="beneficios-title" class="section-title text-orange-600">
       ¿Por qué huevos de gallinas libres?
     </h2>
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mt-8">
-      <div class="flex flex-col items-center text-center">
-        <IconFeather size={64} color="#f97316" class="mb-4" />
-        <h3 class="text-lg font-semibold mb-2">Bienestar animal</h3>
-        <p class="text-neutral-700">
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div class="flex flex-col items-center text-center space-y-2">
+        <IconFeather size={64} color="#f97316" class="mb-2" />
+        <h3 class="text-lg font-semibold">Bienestar animal</h3>
+        <p class="text-neutral-700 max-w-xs">
           Gallinas libres, felices y cuidadas con respeto, garantizando un
           producto de calidad para tu negocio.
         </p>
       </div>
-      <div class="flex flex-col items-center text-center">
-        <IconEgg size={64} color="#f97316" class="mb-4" />
-        <h3 class="text-lg font-semibold mb-2">Huevos frescos</h3>
-        <p class="text-neutral-700">
+      <div class="flex flex-col items-center text-center space-y-2">
+        <IconEgg size={64} color="#f97316" class="mb-2" />
+        <h3 class="text-lg font-semibold">Huevos frescos</h3>
+        <p class="text-neutral-700 max-w-xs">
           Calidad y sabor garantizados en cada huevo para tus clientes.
         </p>
       </div>
-      <div class="flex flex-col items-center text-center">
-        <IconLeaf size={64} color="#f97316" class="mb-4" />
-        <h3 class="text-lg font-semibold mb-2">Sostenibilidad</h3>
-        <p class="text-neutral-700">
+      <div class="flex flex-col items-center text-center space-y-2">
+        <IconLeaf size={64} color="#f97316" class="mb-2" />
+        <h3 class="text-lg font-semibold">Sostenibilidad</h3>
+        <p class="text-neutral-700 max-w-xs">
           Prácticas responsables con el ambiente, cuidando lo que importa a tus
           consumidores.
         </p>
       </div>
-      <div class="flex flex-col items-center text-center">
-        <IconBuildingCommunity size={64} color="#f97316" class="mb-4" />
-        <h3 class="text-lg font-semibold mb-2">Productores locales</h3>
-        <p class="text-neutral-700">
+      <div class="flex flex-col items-center text-center space-y-2">
+        <IconBuildingCommunity size={64} color="#f97316" class="mb-2" />
+        <h3 class="text-lg font-semibold">Productores locales</h3>
+        <p class="text-neutral-700 max-w-xs">
           Apoyamos la economía local, trabajando juntos con negocios como el
           tuyo.
         </p>
       </div>
     </div>
   </div>
+
+  <script is:inline>
+    const content = document.getElementById("beneficiosContent");
+    if (content) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            content.classList.remove("opacity-0", "translate-y-6");
+            content.classList.add("opacity-100", "translate-y-0");
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(content);
+    }
+  </script>
 </section>

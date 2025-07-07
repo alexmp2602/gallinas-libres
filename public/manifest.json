@@ -1,6 +1,7 @@
 {
     "name": "Gallinas Libres",
     "short_name": "GallinasLibres",
+    "id": "/",
     "description": "Huevos frescos de gallinas felices, promoviendo bienestar animal y alimentación sana.",
     "lang": "es",
     "start_url": "/",

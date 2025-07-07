@@ -28,6 +28,7 @@ const { title = "Gallinas Libres" } = Astro.props;
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.gallinaslibres.com/" />
     <meta property="og:image" content="/icons/icon_512.png" />
+    <meta property="og:locale" content="es_AR" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -39,14 +40,27 @@ const { title = "Gallinas Libres" } = Astro.props;
     <meta name="twitter:image" content="/icons/icon_512.png" />
 
     <!-- PWA -->
-    <link rel="icon" href="/icons/icon_512.png" type="image/png" />
+    <link rel="icon" href="/icons/icon_192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/icons/icon_512.png" />
     <link rel="manifest" href="/manifest.json" />
+
+    <!-- Mobile App Capable -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <!-- Enable Animations Conditionally -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
 
   <body>
     <Header />
-    <main id="content">
+    <main id="content" role="main">
       <slot />
     </main>
     <Footer />

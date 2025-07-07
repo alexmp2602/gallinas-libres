@@ -1,11 +1,19 @@
 <section
   id="nosotros"
   aria-labelledby="mision-title"
-  class="section bg-orange-50"
+  class="section bg-orange-50 overflow-hidden scroll-mt-12"
 >
-  <div class="container text-center">
-    <h2 id="mision-title" class="section-title">Nuestra misión</h2>
-    <p class="max-w-2xl mx-auto text-lg text-neutral-700">
+  <div
+    id="misionContent"
+    class="container text-center space-y-6 transform transition duration-700 ease-out"
+    style="opacity:0; transform: translateY(24px);"
+  >
+    <h2 id="mision-title" class="section-title text-orange-600">
+      Nuestra misión
+    </h2>
+    <p
+      class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-800 leading-relaxed"
+    >
       Nuestra misión es promover el bienestar de nuestras gallinas, respetando
       su libertad y su naturaleza, mientras abastecemos a comercios y mayoristas
       con huevos frescos de alta calidad. Creemos que una alimentación sana
@@ -13,4 +21,31 @@
       planeta, a los animales y a quienes confían en nosotros para su negocio.
     </p>
   </div>
+
+  <script is:inline>
+    const content = document.getElementById("misionContent");
+    if (content) {
+      const reveal = () => {
+        content.style.opacity = "1";
+        content.style.transform = "translateY(0)";
+      };
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            reveal();
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(content);
+
+      // Fallback: si ya está visible al cargar
+      if (window.innerHeight >= content.getBoundingClientRect().top) {
+        reveal();
+      }
+    }
+  </script>
 </section>

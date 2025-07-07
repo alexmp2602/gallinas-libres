@@ -5,11 +5,18 @@ import IconBrandWhatsapp from "./icons/IconBrandWhatsapp.astro";
 <section
   id="contacto"
   aria-labelledby="contacto-title"
-  class="section bg-orange-50"
+  class="section bg-orange-50 overflow-hidden"
 >
-  <div class="container text-center">
-    <h2 id="contacto-title" class="section-title">Contactanos</h2>
-    <p class="max-w-2xl mx-auto text-lg text-neutral-700 mb-6">
+  <div
+    id="contactoContent"
+    class="container text-center space-y-6 transform transition duration-700 ease-out js:opacity-0 js:translate-y-6"
+  >
+    <h2 id="contacto-title" class="section-title text-orange-600">
+      Contactanos
+    </h2>
+    <p
+      class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-800 leading-relaxed"
+    >
       Abastecé tu comercio con huevos frescos de gallinas libres, con entregas
       regulares, calidad garantizada y precios competitivos. Sumate a nuestra
       red de mayoristas que eligen productos responsables y de confianza.
@@ -24,4 +31,21 @@ import IconBrandWhatsapp from "./icons/IconBrandWhatsapp.astro";
       <span>Contactar por WhatsApp</span>
     </a>
   </div>
+
+  <script is:inline>
+    const content = document.getElementById("contactoContent");
+    if (content) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            content.classList.remove("opacity-0", "translate-y-6");
+            content.classList.add("opacity-100", "translate-y-0");
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(content);
+    }
+  </script>
 </section>
