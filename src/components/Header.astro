@@ -1,28 +1,89 @@
 ---
-
+import IconMenu from "../components/icons/IconMenu.astro";
+import IconX from "../components/icons/IconX.astro";
 ---
 
-<header role="banner" class="container py-2 flex justify-between items-center">
+<header
+  role="banner"
+  class="p-4 lg:px-16 flex justify-between items-center sticky top-0 bg-white/80 backdrop-blur-md z-50 shadow-sm"
+  x-data="{ open: false }"
+>
+  <!-- Logo -->
   <a href="/" aria-label="Ir a inicio">
     <img
       src="/img/logo/logo_2-1_transparente.png"
       alt="Gallinas Libres - Logo"
-      class="h-16"
+      class="h-14 md:h-16 transition-transform duration-300 ease-in-out hover:scale-105"
       loading="lazy"
     />
   </a>
-  <nav aria-label="Menú principal" class="space-x-4">
+
+  <!-- Desktop Nav -->
+  <nav aria-label="Menú principal" class="hidden md:flex space-x-4">
     <a
       href="#nosotros"
-      class="hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+      class="hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors duration-200"
+      >Nosotros</a
     >
-      Nosotros
-    </a>
+    <a
+      href="#produccion"
+      class="hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors duration-200"
+      >Producción</a
+    >
     <a
       href="#contacto"
-      class="hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+      class="hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors duration-200"
+      >Contacto</a
     >
-      Contacto
-    </a>
   </nav>
+
+  <!-- Mobile Hamburger Button -->
+  <button
+    type="button"
+    aria-label="Abrir menú"
+    class="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 transition-transform"
+    @click="open = true"
+    x-show="!open"
+    x-transition.opacity
+  >
+    <IconMenu class="h-6 w-6 text-orange-500" />
+  </button>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    class="fixed inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 text-lg"
+    x-show="open"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 scale-95"
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100 scale-100"
+    x-transition:leave-end="opacity-0 scale-95"
+  >
+    <!-- Close Button -->
+    <button
+      aria-label="Cerrar menú"
+      class="absolute top-4 right-4 p-2 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+      @click="open = false"
+    >
+      <IconX class="h-8 w-8 text-orange-500" />
+    </button>
+
+    <!-- Mobile Links -->
+    <a
+      href="#nosotros"
+      class="hover:underline text-2xl transition-transform duration-200"
+      @click="open = false">Nosotros</a
+    >
+    <a
+      href="#produccion"
+      class="hover:underline text-2xl transition-transform duration-200"
+      @click="open = false">Producción</a
+    >
+    <a
+      href="#contacto"
+      class="hover:underline text-2xl transition-transform duration-200"
+      @click="open = false">Contacto</a
+    >
+  </div>
 </header>

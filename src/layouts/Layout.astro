@@ -11,31 +11,44 @@ const { title = "Gallinas Libres" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+
+    <!-- SEO Básico -->
     <meta
       name="description"
       content="Gallinas Libres - Huevos frescos de gallinas felices y libres, promoviendo bienestar animal y alimentación sana."
     />
     <meta name="theme-color" content="#f97316" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gallinas Libres" />
+    <meta
+      property="og:description"
+      content="Huevos frescos de gallinas felices, cuidando el bienestar animal y garantizando calidad en cada entrega."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.gallinaslibres.com/" />
+    <meta property="og:image" content="/icons/icon_512.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gallinas Libres" />
+    <meta
+      name="twitter:description"
+      content="Huevos frescos de gallinas felices y libres, promoviendo bienestar animal y alimentación sana."
+    />
+    <meta name="twitter:image" content="/icons/icon_512.png" />
+
+    <!-- PWA -->
     <link rel="icon" href="/icons/icon_512.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icons/icon_512.png" />
     <link rel="manifest" href="/manifest.json" />
   </head>
+
   <body>
     <Header />
     <main id="content">
       <slot />
     </main>
     <Footer />
-
-    <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then((reg) => console.log("Service Worker registrado:", reg.scope))
-          .catch((err) =>
-            console.error("Error al registrar Service Worker:", err)
-          );
-      }
-    </script>
   </body>
 </html>
