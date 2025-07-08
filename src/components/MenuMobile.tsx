@@ -78,6 +78,16 @@ export default function MenuMobile() {
               >
                 Contacto
               </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="#ubicacion"
+                className="text-lg font-medium hover:text-orange-600 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Ubicación
+              </motion.a>
             </nav>
           </motion.div>
         </Dialog>
