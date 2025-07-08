@@ -1,3 +1,36 @@
+---
+const produccionItems = [
+  {
+    src: "/img/produccion/gallinas-libres.webp",
+    alt: "Gallinas libres en el campo",
+    title: "Gallinas libres",
+    description:
+      "Libertad de movimiento en sistemas de granero con áreas de cama y slat, permitiendo comportamientos naturales.",
+  },
+  {
+    src: "/img/produccion/gallinas.webp",
+    alt: "Gallinas recibiendo nutrición",
+    title: "Nutrición de calidad",
+    description:
+      "Dietas balanceadas con núcleos, vitaminas y minerales en proporciones exactas según la etapa, cuidando salud y productividad.",
+  },
+  {
+    src: "/img/produccion/yema.webp",
+    alt: "Yema de huevo fresco",
+    title: "Calidad de huevo",
+    description:
+      "Huevos de excelente tamaño, color y resistencia de cáscara, con frescura garantizada en cada entrega.",
+  },
+  {
+    src: "/img/produccion/maples30.webp",
+    alt: "Maples de huevos para mayoristas",
+    title: "Entrega confiable",
+    description:
+      "Huevos recolectados diariamente y entregados en tiempo y forma, listos para abastecer comercios y mayoristas.",
+  },
+];
+---
+
 <section
   id="produccion"
   aria-labelledby="produccion-title"
@@ -5,7 +38,7 @@
 >
   <div
     id="produccionContent"
-    class="container text-center space-y-8 transform transition duration-700 ease-out js:opacity-0 js:translate-y-6"
+    class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center space-y-8"
   >
     <h2 id="produccion-title" class="section-title text-orange-600">
       Nuestra producción
@@ -20,79 +53,46 @@
       huevos de excelente calidad y consistencia para tu negocio.
     </p>
 
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-      <div class="flex flex-col items-center text-center space-y-2">
-        <img
-          src="/img/produccion/gallinas-libres.webp"
-          alt="Gallinas libres en el campo"
-          class="rounded-lg shadow-md w-full h-64 object-cover"
-          loading="lazy"
-        />
-        <h3 class="text-lg font-semibold">Gallinas libres</h3>
-        <p class="text-neutral-700 max-w-xs">
-          Libertad de movimiento en sistemas de granero con áreas de cama y
-          slat, permitiendo comportamientos naturales.
-        </p>
-      </div>
-
-      <div class="flex flex-col items-center text-center space-y-2">
-        <img
-          src="/img/produccion/gallinas.webp"
-          alt="Gallinas recibiendo nutrición"
-          class="rounded-lg shadow-md w-full h-64 object-cover"
-          loading="lazy"
-        />
-        <h3 class="text-lg font-semibold">Nutrición de calidad</h3>
-        <p class="text-neutral-700 max-w-xs">
-          Dietas balanceadas con núcleos, vitaminas y minerales en proporciones
-          exactas según la etapa, cuidando salud y productividad.
-        </p>
-      </div>
-
-      <div class="flex flex-col items-center text-center space-y-2">
-        <img
-          src="/img/produccion/yema.webp"
-          alt="Yema de huevo fresco"
-          class="rounded-lg shadow-md w-full h-64 object-cover"
-          loading="lazy"
-        />
-        <h3 class="text-lg font-semibold">Calidad de huevo</h3>
-        <p class="text-neutral-700 max-w-xs">
-          Huevos de excelente tamaño, color y resistencia de cáscara, con
-          frescura garantizada en cada entrega.
-        </p>
-      </div>
-
-      <div class="flex flex-col items-center text-center space-y-2">
-        <img
-          src="/img/produccion/maples30.webp"
-          alt="Maples de huevos para mayoristas"
-          class="rounded-lg shadow-md w-full h-64 object-cover"
-          loading="lazy"
-        />
-        <h3 class="text-lg font-semibold">Entrega confiable</h3>
-        <p class="text-neutral-700 max-w-xs">
-          Huevos recolectados diariamente y entregados en tiempo y forma, listos
-          para abastecer comercios y mayoristas.
-        </p>
-      </div>
+    <div id="produccionGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        produccionItems.map((item) => (
+          <div class="produccion-item flex flex-col items-center text-center space-y-3">
+            <img
+              src={item.src}
+              alt={item.alt}
+              class="rounded-lg shadow-md w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+            <h3 class="text-lg font-semibold">{item.title}</h3>
+            <p class="text-neutral-700 max-w-xs">{item.description}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 
-  <script is:inline>
-    const content = document.getElementById("produccionContent");
-    if (content) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            content.classList.remove("opacity-0", "translate-y-6");
-            content.classList.add("opacity-100", "translate-y-0");
-            observer.disconnect();
-          }
+  <!-- Script Motion One -->
+  <script type="module" is:inline>
+    import { animate, inView, stagger } from "https://esm.sh/motion";
+
+    const container = document.getElementById("produccionGrid");
+    if (container) {
+      const items = container.querySelectorAll(".produccion-item");
+      inView(
+        container,
+        () => {
+          animate(
+            items,
+            { opacity: [0, 1] },
+            {
+              delay: stagger(0.1),
+              duration: 0.8,
+              easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+            }
+          );
         },
-        { threshold: 0.1 }
+        { margin: "-20% 0px" }
       );
-      observer.observe(content);
     }
   </script>
 </section>

@@ -4,24 +4,22 @@ const year = new Date().getFullYear();
 
 <footer
   id="footer"
-  class="container py-6 text-center text-sm text-neutral-500 transform transition duration-700 ease-out js:opacity-0 js:translate-y-6"
+  class="container py-6 text-center text-sm text-neutral-500 opacity-0 translate-y-6 will-change-transform"
 >
   © {year} Gallinas Libres — Todos los derechos reservados
 
   <script is:inline>
-    const footer = document.getElementById("footer");
-    if (footer) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            footer.classList.remove("opacity-0", "translate-y-6");
-            footer.classList.add("opacity-100", "translate-y-0");
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.1 }
-      );
-      observer.observe(footer);
-    }
+    import("https://cdn.skypack.dev/motion").then(({ animate, inView }) => {
+      const footer = document.getElementById("footer");
+      if (!footer) return;
+
+      inView(footer, () => {
+        animate(
+          footer,
+          { opacity: [0, 1], y: [30, 0] },
+          { duration: 0.8, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
+        );
+      });
+    });
   </script>
 </footer>

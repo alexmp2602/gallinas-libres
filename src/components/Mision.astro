@@ -5,8 +5,7 @@
 >
   <div
     id="misionContent"
-    class="container text-center space-y-6 transform transition duration-700 ease-out"
-    style="opacity:0; transform: translateY(24px);"
+    class="container text-center space-y-6 opacity-0 will-change-transform"
   >
     <h2 id="mision-title" class="section-title text-orange-600">
       Nuestra misión
@@ -22,30 +21,22 @@
     </p>
   </div>
 
-  <script is:inline>
-    const content = document.getElementById("misionContent");
-    if (content) {
-      const reveal = () => {
-        content.style.opacity = "1";
-        content.style.transform = "translateY(0)";
-      };
+  <!-- Script Motion One -->
+  <script type="module" is:inline>
+    import { animate, inView } from "https://cdn.skypack.dev/motion";
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            reveal();
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.1 }
-      );
+    const misionContent = document.getElementById("misionContent");
 
-      observer.observe(content);
-
-      // Fallback: si ya está visible al cargar
-      if (window.innerHeight >= content.getBoundingClientRect().top) {
-        reveal();
-      }
-    }
+    inView(
+      misionContent,
+      () => {
+        animate(
+          misionContent,
+          { opacity: 1 },
+          { duration: 0.8, easing: "ease-out" }
+        );
+      },
+      { margin: "-20% 0px" }
+    );
   </script>
 </section>

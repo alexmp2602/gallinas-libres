@@ -1,75 +1,43 @@
 ---
-import IconMenu from "../components/icons/IconMenu.astro";
-import IconX from "../components/icons/IconX.astro";
+import MenuMobile from "../components/MenuMobile";
+import { motion } from "motion/react";
 ---
 
 <header
-  role="banner"
-  class="p-4 lg:px-16 flex justify-between items-center sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow"
+  class="sticky top-0 z-50 flex items-center justify-between p-4 lg:px-16 bg-white/90 backdrop-blur-md shadow transition-colors duration-300"
 >
-  <!-- Logo -->
-  <a href="/" aria-label="Ir a inicio">
+  <!-- Logo con microinteracción Motion for React -->
+  <motion.a
+    href="/"
+    aria-label="Ir a inicio"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    class="block"
+  >
     <img
       src="/img/logo/logo_2-1_transparente.png"
       alt="Gallinas Libres - Logo"
-      class="h-12 md:h-14 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95"
+      class="h-12 md:h-14 transition-transform duration-300 ease-in-out"
+      loading="lazy"
     />
-  </a>
+  </motion.a>
 
   <!-- Desktop Nav -->
   <nav class="hidden md:flex space-x-8 font-medium text-neutral-800">
-    <a href="#nosotros" class="hover:text-orange-600 transition">Nosotros</a>
-    <a href="#produccion" class="hover:text-orange-600 transition">Producción</a
+    <a
+      href="#nosotros"
+      class="hover:text-orange-600 transition-colors duration-300">Nosotros</a
     >
-    <a href="#contacto" class="hover:text-orange-600 transition">Contacto</a>
+    <a
+      href="#produccion"
+      class="hover:text-orange-600 transition-colors duration-300">Producción</a
+    >
+    <a
+      href="#contacto"
+      class="hover:text-orange-600 transition-colors duration-300">Contacto</a
+    >
   </nav>
 
-  <!-- Mobile Hamburger Button -->
-  <button
-    id="menuToggle"
-    aria-label="Abrir menú"
-    class="md:hidden p-2 rounded hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
-  >
-    <IconMenu class="h-7 w-7 text-orange-600" />
-  </button>
-
-  <!-- Mobile Menu Overlay -->
-  <div
-    id="mobileMenu"
-    class="fixed inset-0 bg-white z-50 hidden flex-col items-center justify-center space-y-8 text-lg font-medium text-neutral-800"
-  >
-    <!-- Close Button -->
-    <button
-      id="menuClose"
-      aria-label="Cerrar menú"
-      class="absolute top-6 right-6 p-2 rounded hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
-    >
-      <IconX class="h-7 w-7 text-orange-600" />
-    </button>
-
-    <!-- Mobile Links -->
-    <a href="#nosotros" class="hover:text-orange-600 transition">Nosotros</a>
-    <a href="#produccion" class="hover:text-orange-600 transition">Producción</a
-    >
-    <a href="#contacto" class="hover:text-orange-600 transition">Contacto</a>
-  </div>
-
-  <script is:inline>
-    const menuToggle = document.getElementById("menuToggle");
-    const menuClose = document.getElementById("menuClose");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.remove("hidden");
-    });
-
-    const closeMenu = () => {
-      mobileMenu.classList.add("hidden");
-    };
-
-    menuClose.addEventListener("click", closeMenu);
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
-  </script>
+  <!-- Mobile Menu (isla React) -->
+  <MenuMobile client:load />
 </header>

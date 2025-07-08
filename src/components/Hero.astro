@@ -1,4 +1,9 @@
+---
+// Sin imports necesarios, usaremos Motion One vía CDN
+---
+
 <section
+  id="hero"
   aria-labelledby="hero-title"
   class="relative min-h-[80vh] flex flex-col items-center justify-center text-center overflow-hidden px-4 py-12"
 >
@@ -10,52 +15,81 @@
     class="absolute inset-0 w-full h-full object-cover object-center"
     loading="lazy"
   />
-  <div class="absolute inset-0 bg-white/60 backdrop-blur-sm"></div>
+  <div class="absolute inset-0 bg-white/60 backdrop-blur-md"></div>
 
-  <!-- Contenido con animación -->
+  <!-- Contenido -->
   <div
     id="heroContent"
-    class="relative z-10 max-w-xl mx-auto animate-fade-in space-y-4"
+    class="relative z-10 max-w-xl mx-auto opacity-0 will-change-transform transition-transform"
   >
     <img
       src="/img/logo/logo_2-1_transparente.png"
       alt="Gallinas Libres - Logo"
-      class="w-52 md:w-64 lg:w-72 mx-auto drop-shadow-md"
+      class="h-32 mx-auto drop-shadow-md"
       loading="lazy"
     />
 
     <h1
       id="hero-title"
-      class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-900 leading-tight"
+      class="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-900 leading-tight"
     >
       Huevos frescos de gallinas felices
     </h1>
 
-    <p class="max-w-lg mx-auto text-base sm:text-lg text-neutral-800">
+    <p class="mt-4 max-w-lg mx-auto text-base sm:text-lg text-neutral-800">
       Suministramos huevos de calidad de gallinas libres para tu negocio con
       entregas seguras y regulares.
     </p>
 
     <a
+      id="heroCTA"
       href="#contacto"
-      class="inline-block bg-orange-500 text-white font-semibold px-6 py-3 rounded-md shadow hover:bg-orange-600 active:bg-orange-700 transition focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+      class="mt-6 inline-block bg-orange-500 text-white font-semibold px-6 py-3 rounded-md shadow hover:bg-orange-600 active:bg-orange-700 transition focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
     >
       Consultar pedidos mayoristas
     </a>
   </div>
 
-  <!-- Script para activar la animación -->
-  <script is:inline>
+  <!-- Script Motion One -->
+  <script type="module" is:inline>
+    import { animate, inView } from "https://cdn.skypack.dev/motion";
+
     const heroContent = document.getElementById("heroContent");
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          heroContent.classList.add("show");
-          observer.unobserve(entry.target);
-        }
+    const heroCTA = document.getElementById("heroCTA");
+
+    // Reveal al hacer scroll
+    inView(
+      heroContent,
+      () => {
+        animate(
+          heroContent,
+          { opacity: 1, y: 0 },
+          { duration: 0.8, easing: "ease-out" }
+        );
       },
-      { threshold: 0.1 }
+      { margin: "-20% 0px" }
     );
-    observer.observe(heroContent);
+
+    // Microinteracción CTA
+    heroCTA.addEventListener("mouseenter", () => {
+      animate(heroCTA, { scale: 1.05 }, { duration: 0.2, easing: "ease-out" });
+    });
+    heroCTA.addEventListener("mouseleave", () => {
+      animate(heroCTA, { scale: 1 }, { duration: 0.2, easing: "ease-in" });
+    });
+    heroCTA.addEventListener("mousedown", () => {
+      animate(
+        heroCTA,
+        { scale: 0.95 },
+        { duration: 0.1, easing: "ease-in-out" }
+      );
+    });
+    heroCTA.addEventListener("mouseup", () => {
+      animate(
+        heroCTA,
+        { scale: 1.05 },
+        { duration: 0.1, easing: "ease-in-out" }
+      );
+    });
   </script>
 </section>
