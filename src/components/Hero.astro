@@ -1,37 +1,60 @@
 ---
-// Sin imports necesarios, usaremos Motion One vía CDN
+/* Hero optimizado para 995×557: generar hero-gallinas-{768,995}.(avif|webp|jpg) */
+const HERO_BASE = "/img/hero/hero-gallinas";
+const LOGO_SRC = "/img/logo/logo_2-1_transparente.png";
 ---
 
 <section
   id="hero"
   aria-labelledby="hero-title"
-  class="relative min-h-[80vh] flex flex-col items-center justify-center text-center overflow-hidden px-4 py-12"
+  class="relative flex flex-col items-center justify-center text-center overflow-hidden px-4 py-12 contain-layout"
+  style="min-height: calc(var(--vh, 1vh) * 80);"
 >
-  <!-- Fondo -->
-  <img
-    src="/hero-gallinas.jpg"
-    alt=""
-    aria-hidden="true"
-    class="absolute inset-0 w-full h-full object-cover object-center"
-    loading="lazy"
-  />
-  <div class="absolute inset-0 bg-white/60 backdrop-blur-md"></div>
+  <!-- Fondo (LCP) -->
+  <picture class="absolute inset-0 -z-10">
+    <source
+      type="image/avif"
+      srcset={`${HERO_BASE}-768.avif 768w, ${HERO_BASE}-995.avif 995w`}
+      sizes="100vw"
+    />
+    <source
+      type="image/webp"
+      srcset={`${HERO_BASE}-768.webp 768w, ${HERO_BASE}-995.webp 995w`}
+      sizes="100vw"
+    />
+    <img
+      id="hero-lcp"
+      src={`${HERO_BASE}-995.jpg`}
+      alt=""
+      aria-hidden="true"
+      width="995"
+      height="557"
+      decoding="async"
+      fetchpriority="high"
+      class="w-full h-full object-cover object-center"
+    />
+  </picture>
+
+  <div class="absolute inset-0 bg-white/60 backdrop-blur-md -z-10"></div>
 
   <!-- Contenido -->
   <div
     id="heroContent"
-    class="relative z-10 max-w-xl mx-auto opacity-0 will-change-transform transition-transform"
+    class="relative z-10 max-w-xl mx-auto opacity-0 translate-y-6 transition-[opacity,transform] duration-700 ease-out will-change-transform"
   >
     <img
-      src="/img/logo/logo_2-1_transparente.png"
+      src={LOGO_SRC}
       alt="Gallinas Libres - Logo"
-      class="h-32 mx-auto drop-shadow-md"
-      loading="lazy"
+      class="h-28 sm:h-32 mx-auto drop-shadow-md"
+      width="256"
+      height="128"
+      loading="eager"
+      decoding="async"
     />
 
     <h1
       id="hero-title"
-      class="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-900 leading-tight"
+      class="mt-4 text-3xl sm:text-4xl md:text-5xl font-sans font-extrabold text-neutral-900 leading-tight"
     >
       Huevos frescos de gallinas felices
     </h1>
@@ -44,52 +67,48 @@
     <a
       id="heroCTA"
       href="#contacto"
-      class="mt-6 inline-block bg-orange-500 text-white font-semibold px-6 py-3 rounded-md shadow hover:bg-orange-600 active:bg-orange-700 transition focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+      class="mt-6 inline-block bg-orange-500 text-white font-medium px-6 py-3 rounded-md shadow
+             transition focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2
+             hover:bg-orange-600 active:bg-orange-700"
     >
       Consultar pedidos mayoristas
     </a>
   </div>
 
-  <!-- Script Motion One -->
-  <script type="module" is:inline>
-    import { animate, inView } from "https://cdn.skypack.dev/motion";
-
-    const heroContent = document.getElementById("heroContent");
-    const heroCTA = document.getElementById("heroCTA");
-
-    // Reveal al hacer scroll
-    inView(
-      heroContent,
-      () => {
-        animate(
-          heroContent,
-          { opacity: 1, y: 0 },
-          { duration: 0.8, easing: "ease-out" }
-        );
-      },
-      { margin: "-20% 0px" }
-    );
-
-    // Microinteracción CTA
-    heroCTA.addEventListener("mouseenter", () => {
-      animate(heroCTA, { scale: 1.05 }, { duration: 0.2, easing: "ease-out" });
-    });
-    heroCTA.addEventListener("mouseleave", () => {
-      animate(heroCTA, { scale: 1 }, { duration: 0.2, easing: "ease-in" });
-    });
-    heroCTA.addEventListener("mousedown", () => {
-      animate(
-        heroCTA,
-        { scale: 0.95 },
-        { duration: 0.1, easing: "ease-in-out" }
+  <!-- Reveal simple sin librerías -->
+  <script is:inline>
+    (() => {
+      const el = document.getElementById("heroContent");
+      if (!el) return;
+      const show = () => {
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      };
+      const rect = el.getBoundingClientRect();
+      if (rect.top < innerHeight && rect.bottom > 0) {
+        show();
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            show();
+            io.disconnect();
+          }
+        },
+        { root: null, rootMargin: "-20% 0px", threshold: 0.01 }
       );
-    });
-    heroCTA.addEventListener("mouseup", () => {
-      animate(
-        heroCTA,
-        { scale: 1.05 },
-        { duration: 0.1, easing: "ease-in-out" }
-      );
-    });
+      io.observe(el);
+    })();
   </script>
+
+  <style is:global>
+    @media (prefers-reduced-motion: reduce) {
+      #heroContent {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
 </section>

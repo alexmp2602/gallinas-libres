@@ -1,25 +1,44 @@
 @import "tailwindcss";
 
-/* BASE RESETS */
+/* BASE */
 @layer base {
   html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
     @apply bg-white text-neutral-900;
   }
   body {
     @apply antialiased font-sans leading-relaxed;
   }
+
+  /* medios seguros y sin overflow */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  img[width][height] {
+    height: auto;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
+    text-wrap: balance;
     @apply font-bold leading-tight text-neutral-900 tracking-tight;
   }
   p {
     @apply leading-relaxed text-neutral-700 tracking-normal;
   }
+
   a {
     @apply text-orange-600 hover:text-orange-700 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
   }
@@ -31,10 +50,7 @@
   ::selection {
     @apply bg-orange-500 text-white;
   }
-}
 
-/* TYPOGRAPHY */
-@layer base {
   :root {
     font-family: "Inter", system-ui, sans-serif;
   }
@@ -45,6 +61,7 @@
   .container {
     @apply max-w-7xl mx-auto px-4;
   }
+
   .glass {
     backdrop-filter: blur(10px) saturate(180%);
     background-color: rgba(255, 255, 255, 0.25);
@@ -69,6 +86,15 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* aísla relayouts grandes y difiere render bajo el fold */
+  .contain-layout {
+    contain: layout paint;
+  }
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
 }
 
 /* COMPONENTS */
@@ -87,5 +113,14 @@
   }
   .section-title {
     @apply text-3xl md:text-4xl font-bold mb-6 text-center tracking-tight;
+  }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

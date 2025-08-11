@@ -1,19 +1,23 @@
 ---
 import IconBrandWhatsapp from "./icons/IconBrandWhatsapp.astro";
+
+const ACTION =
+  import.meta.env.PUBLIC_CONTACT_ENDPOINT || "https://formspree.io/f/myzployj";
 ---
 
 <section
   id="contacto"
   aria-labelledby="contacto-title"
-  class="section bg-orange-50 overflow-hidden scroll-mt-12"
+  class="section bg-orange-50 overflow-hidden scroll-mt-12 cv-auto contain-layout"
 >
   <div
     id="contactoContent"
-    class="container text-center space-y-6 will-change-transform"
+    class="container text-center space-y-6 fade-slide-up"
   >
     <h2 id="contacto-title" class="section-title text-orange-600">
       Contactanos
     </h2>
+
     <p
       class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-800 leading-relaxed"
     >
@@ -21,59 +25,212 @@ import IconBrandWhatsapp from "./icons/IconBrandWhatsapp.astro";
       regulares, calidad garantizada y precios competitivos. Sumate a nuestra
       red de mayoristas que eligen productos responsables y de confianza.
     </p>
-    <a
-      id="whatsappCTA"
-      href="https://wa.me/5492324560122?text=Hola!%20Estoy%20interesado%20en%20consultar%20sobre%20huevos%20mayoristas."
-      target="_blank"
-      rel="noopener"
-      class="inline-flex items-center gap-2 bg-green-500 text-white font-semibold px-6 py-3 rounded-md shadow hover:bg-green-600 active:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+
+    <!-- Formulario accesible + honeypot + envío sin redirección -->
+    <form
+      id="contact-form"
+      action={ACTION}
+      method="POST"
+      accept-charset="UTF-8"
+      class="mx-auto grid gap-4 sm:gap-6 max-w-2xl text-left"
+      aria-describedby="contact-status"
     >
-      <IconBrandWhatsapp size={24} color="#fff" />
-      <span>Contactar por WhatsApp</span>
-    </a>
+      <!-- Honeypot -->
+      <div class="sr-only" aria-hidden="true">
+        <label for="website">Dejá este campo vacío</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="name" class="block text-sm mb-1">Nombre y apellido</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            maxlength="100"
+            autocomplete="name"
+            class="w-full rounded-md border border-neutral-300 bg-white px-3 py-2"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm mb-1">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            maxlength="120"
+            autocomplete="email"
+            inputmode="email"
+            class="w-full rounded-md border border-neutral-300 bg-white px-3 py-2"
+          />
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="phone" class="block text-sm mb-1"
+            >Teléfono (opcional)</label
+          >
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            maxlength="30"
+            autocomplete="tel"
+            inputmode="tel"
+            class="w-full rounded-md border border-neutral-300 bg-white px-3 py-2"
+          />
+        </div>
+        <div>
+          <label for="topic" class="block text-sm mb-1">Interés</label>
+          <select
+            id="topic"
+            name="topic"
+            class="w-full rounded-md border border-neutral-300 bg-white px-3 py-2"
+          >
+            <option value="mayorista">Pedidos mayoristas</option>
+            <option value="comercio">Abastecimiento a comercios</option>
+            <option value="general">Consulta general</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm mb-1">Mensaje</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          maxlength="2000"
+          rows="5"
+          class="w-full rounded-md border border-neutral-300 bg-white px-3 py-2"
+        ></textarea>
+      </div>
+
+      <!-- Metadatos -->
+      <input
+        type="hidden"
+        name="_subject"
+        value="Nueva consulta desde gallinaslibres.com"
+      />
+      <input type="hidden" name="page" value={Astro.url.pathname} />
+      <input type="hidden" name="ts" value={Date.now().toString()} />
+
+      <div
+        class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2"
+      >
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center bg-orange-500 text-white font-medium px-6 py-3 rounded-md shadow
+                 hover:bg-orange-600 active:bg-orange-700 transition focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+        >
+          Enviar consulta
+        </button>
+
+        <!-- Alternativa WhatsApp -->
+        <a
+          id="whatsappCTA"
+          href="https://wa.me/5492324560122?text=Hola!%20Estoy%20interesado%20en%20consultar%20sobre%20huevos%20mayoristas."
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center justify-center gap-2 bg-green-500 text-white font-medium px-6 py-3 rounded-md shadow
+                 hover:bg-green-600 active:bg-green-700 transition"
+        >
+          <IconBrandWhatsapp size={20} color="#fff" />
+          <span>Contactar por WhatsApp</span>
+        </a>
+      </div>
+
+      <p
+        id="contact-status"
+        role="status"
+        aria-live="polite"
+        class="text-sm mt-2 text-neutral-700"
+      >
+      </p>
+    </form>
   </div>
 
-  <!-- Script Motion One -->
-  <script type="module" is:inline>
-    import { animate, inView } from "https://esm.sh/motion";
+  <script is:inline>
+    (() => {
+      // reveal
+      const wrapper = document.getElementById("contactoContent");
+      if (wrapper) {
+        const show = () => wrapper.classList.add("show");
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          show();
+        else {
+          const r = wrapper.getBoundingClientRect();
+          if (r.top < innerHeight && r.bottom > 0) show();
+          else {
+            const io = new IntersectionObserver(
+              (entries) => {
+                if (entries.some((e) => e.isIntersecting)) {
+                  show();
+                  io.disconnect();
+                }
+              },
+              { rootMargin: "0px 0px -10% 0px" }
+            );
+            io.observe(wrapper);
+          }
+        }
+      }
 
-    const contacto = document.getElementById("contactoContent");
-    if (contacto) {
-      inView(
-        contacto,
-        () => {
-          animate(
-            contacto,
-            { opacity: [0, 1] },
-            { duration: 0.8, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
-          );
-        },
-        { margin: "-20% 0px" }
-      );
-    }
+      // envío sin redirección (progressive enhancement)
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("contact-status");
+      if (!form || !status) return;
 
-    const btn = document.getElementById("whatsappCTA");
-    if (btn) {
-      btn.addEventListener("mouseenter", () => {
-        animate(btn, { scale: 1.05 }, { duration: 0.3, easing: "ease-out" });
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+
+        // honeypot
+        if (data.get("website")) {
+          status.textContent = "Error de validación.";
+          return;
+        }
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn && (submitBtn.disabled = true);
+
+        try {
+          const res = await fetch(form.action, {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: data,
+          });
+
+          if (res.ok) {
+            form.reset();
+            status.textContent = "¡Gracias! Te contactamos a la brevedad.";
+            // GTM
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "contact_submit",
+              topic: data.get("topic"),
+              page: window.location.pathname,
+            });
+          } else {
+            status.textContent =
+              "No pudimos enviar el formulario. Probá nuevamente.";
+          }
+        } catch {
+          status.textContent = "Sin conexión. Intentá otra vez.";
+        } finally {
+          submitBtn && (submitBtn.disabled = false);
+        }
       });
-      btn.addEventListener("mouseleave", () => {
-        animate(btn, { scale: 1 }, { duration: 0.3, easing: "ease-in" });
-      });
-      btn.addEventListener("mousedown", () => {
-        animate(
-          btn,
-          { scale: 0.95 },
-          { duration: 0.15, easing: "ease-in-out" }
-        );
-      });
-      btn.addEventListener("mouseup", () => {
-        animate(
-          btn,
-          { scale: 1.05 },
-          { duration: 0.15, easing: "ease-in-out" }
-        );
-      });
-    }
+    })();
   </script>
 </section>

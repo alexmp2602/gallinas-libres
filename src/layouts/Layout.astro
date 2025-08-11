@@ -9,17 +9,21 @@ const { title = "Gallinas Libres" } = Astro.props;
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light" />
     <title>{title}</title>
 
-    <!-- SEO Básico -->
+    <!-- SEO -->
     <meta
       name="description"
       content="Gallinas Libres - Huevos frescos de gallinas felices y libres, promoviendo bienestar animal y alimentación sana."
     />
     <meta name="theme-color" content="#f97316" />
 
-    <!-- Open Graph -->
+    <!-- OG / Twitter -->
     <meta property="og:title" content="Gallinas Libres" />
     <meta
       property="og:description"
@@ -29,8 +33,6 @@ const { title = "Gallinas Libres" } = Astro.props;
     <meta property="og:url" content="https://www.gallinaslibres.com/" />
     <meta property="og:image" content="/icons/icon_512.png" />
     <meta property="og:locale" content="es_AR" />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Gallinas Libres" />
     <meta
@@ -44,23 +46,25 @@ const { title = "Gallinas Libres" } = Astro.props;
     <link rel="apple-touch-icon" href="/icons/icon_512.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Mobile App Capable -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
+    <!-- CLS guard: vh estable -->
+    <script is:inline>
+      const vh =
+        (window.visualViewport ? visualViewport.height : innerHeight) * 0.01;
+      document.documentElement.style.setProperty("--vh", vh + "px");
+    </script>
 
-    <!-- Enable Animations Conditionally -->
-    <script>
+    <!-- Habilitar animaciones condicionalmente -->
+    <script is:inline>
       document.documentElement.classList.add("js");
     </script>
+
+    <!-- Slot para preloads/meta por página (ej: LCP) -->
+    <slot name="head" />
   </head>
 
-  <body>
+  <body class="min-h-screen antialiased">
     <Header />
-    <main id="content" role="main">
+    <main id="content" role="main" tabindex="-1">
       <slot />
     </main>
     <Footer />

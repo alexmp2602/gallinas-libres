@@ -34,7 +34,7 @@ const produccionItems = [
 <section
   id="produccion"
   aria-labelledby="produccion-title"
-  class="section bg-orange-50 overflow-hidden scroll-mt-12"
+  class="section bg-orange-50 overflow-hidden scroll-mt-12 cv-auto contain-layout"
 >
   <div
     id="produccionContent"
@@ -43,9 +43,8 @@ const produccionItems = [
     <h2 id="produccion-title" class="section-title text-orange-600">
       Nuestra producción
     </h2>
-    <p
-      class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-800 leading-relaxed mb-8"
-    >
+
+    <p class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-800 leading-relaxed mb-8">
       Seguimos el <strong>manual oficial Hy-Line Brown</strong>, proporcionando
       una alimentación balanceada con núcleos, vitaminas y minerales de calidad,
       ajustada con precisión según cada etapa de vida y postura de nuestras
@@ -54,45 +53,59 @@ const produccionItems = [
     </p>
 
     <div id="produccionGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        produccionItems.map((item) => (
-          <div class="produccion-item flex flex-col items-center text-center space-y-3">
-            <img
-              src={item.src}
-              alt={item.alt}
-              class="rounded-lg shadow-md w-full aspect-[4/3] object-cover"
-              loading="lazy"
-            />
-            <h3 class="text-lg font-semibold">{item.title}</h3>
-            <p class="text-neutral-700 max-w-xs">{item.description}</p>
-          </div>
-        ))
-      }
+      {produccionItems.map((item) => (
+        <article class="produccion-item flex flex-col items-center text-center space-y-3 fade-slide-up" tabindex="0">
+          <!-- Usamos aspect ratio para 0 CLS + width/height como pista -->
+          <img
+            src={item.src}
+            alt={item.alt}
+            width="800" height="600"
+            loading="lazy" decoding="async" fetchpriority="low"
+            class="rounded-lg shadow-md w-full aspect-[4/3] object-cover"
+          />
+          <h3 class="text-lg font-semibold">{item.title}</h3>
+          <p class="text-neutral-700 max-w-xs">{item.description}</p>
+        </article>
+      ))}
     </div>
   </div>
 
-  <!-- Script Motion One -->
-  <script type="module" is:inline>
-    import { animate, inView, stagger } from "https://esm.sh/motion";
+  <!-- Stagger reveal sin librerías -->
+  <script is:inline>
+    (() => {
+      const grid = document.getElementById("produccionGrid");
+      if (!grid) return;
 
-    const container = document.getElementById("produccionGrid");
-    if (container) {
-      const items = container.querySelectorAll(".produccion-item");
-      inView(
-        container,
-        () => {
-          animate(
-            items,
-            { opacity: [0, 1] },
-            {
-              delay: stagger(0.1),
-              duration: 0.8,
-              easing: "cubic-bezier(0.4, 0, 0.2, 1)",
-            }
-          );
+      const items = Array.from(grid.querySelectorAll(".produccion-item"));
+
+      const showAll = () => {
+        items.forEach((el, i) => {
+          el.style.transitionDelay = `${i * 70}ms`;
+          el.classList.add("show");
+        });
+      };
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        showAll();
+        return;
+      }
+
+      const rect = grid.getBoundingClientRect();
+      if (rect.top < innerHeight && rect.bottom > 0) {
+        showAll();
+        return;
+      }
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            showAll();
+            io.disconnect();
+          }
         },
-        { margin: "-20% 0px" }
+        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
       );
-    }
+      io.observe(grid);
+    })();
   </script>
 </section>

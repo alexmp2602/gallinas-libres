@@ -35,7 +35,7 @@ const beneficios = [
 <section
   id="beneficios"
   aria-labelledby="beneficios-title"
-  class="section bg-white overflow-hidden"
+  class="section bg-white overflow-hidden cv-auto contain-layout"
 >
   <div id="beneficiosContent" class="container text-center space-y-8">
     <h2 id="beneficios-title" class="section-title text-orange-600">
@@ -45,39 +45,55 @@ const beneficios = [
     <div id="beneficiosGrid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
       {
         beneficios.map((item) => (
-          <div class="beneficio-item flex flex-col items-center text-center space-y-2">
-            <item.icon size={64} color="#f97316" class="mb-2" />
+          <article class="beneficio-item flex flex-col items-center text-center space-y-2 fade-slide-up" tabindex="0">
+            <!-- ícono decorativo con tamaño fijo para evitar CLS -->
+            <span aria-hidden="true" class="mb-2 inline-flex h-16 w-16 items-center justify-center">
+              <item.icon size={64} color="#f97316" width={64} height={64} />
+            </span>
             <h3 class="text-lg font-semibold">{item.title}</h3>
             <p class="text-neutral-700 max-w-xs">{item.description}</p>
-          </div>
+          </article>
         ))
       }
     </div>
   </div>
 
-  <!-- Script Motion One -->
-  <script type="module" is:inline>
-    import { animate, inView, stagger } from "https://cdn.skypack.dev/motion";
+  <!-- Reveal progresivo sin librerías (stagger) -->
+  <script is:inline>
+    (() => {
+      const grid = document.getElementById("beneficiosGrid");
+      if (!grid) return;
 
-    const container = document.getElementById("beneficiosGrid");
-    if (!container) return;
+      const items = Array.from(grid.querySelectorAll(".beneficio-item"));
+      const showAll = () => {
+        items.forEach((el, i) => {
+          el.style.transitionDelay = `${i * 60}ms`;
+          el.classList.add("show");
+        });
+      };
 
-    const items = container.querySelectorAll(".beneficio-item");
+      // Respeta reduced motion
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        showAll();
+        return;
+      }
 
-    inView(
-      container,
-      () => {
-        animate(
-          items,
-          { opacity: [0, 1] },
-          {
-            delay: stagger(0.1),
-            duration: 0.8,
-            easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      const rect = grid.getBoundingClientRect();
+      if (rect.top < innerHeight && rect.bottom > 0) {
+        showAll();
+        return;
+      }
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some(e => e.isIntersecting)) {
+            showAll();
+            io.disconnect();
           }
-        );
-      },
-      { margin: "-20% 0px" }
-    );
+        },
+        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+      );
+      io.observe(grid);
+    })();
   </script>
 </section>

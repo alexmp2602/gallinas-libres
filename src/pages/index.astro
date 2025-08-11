@@ -9,6 +9,17 @@ import Ubicacion from "../components/Ubicacion.astro";
 ---
 
 <Layout title="Gallinas Libres">
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      href="/img/hero/hero-gallinas-995.avif"
+      imagesrcset="/img/hero/hero-gallinas-768.avif 768w, /img/hero/hero-gallinas-995.avif 995w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+  </Fragment>
+
   <Hero />
   <Mision />
   <Beneficios />

@@ -1,12 +1,9 @@
 <section
   id="nosotros"
   aria-labelledby="mision-title"
-  class="section bg-orange-50 overflow-hidden scroll-mt-12"
+  class="section bg-orange-50 overflow-hidden scroll-mt-12 cv-auto contain-layout"
 >
-  <div
-    id="misionContent"
-    class="container text-center space-y-6 opacity-0 will-change-transform"
-  >
+  <div id="misionContent" class="container text-center space-y-6 fade-slide-up">
     <h2 id="mision-title" class="section-title text-orange-600">
       Nuestra misión
     </h2>
@@ -21,22 +18,34 @@
     </p>
   </div>
 
-  <!-- Script Motion One -->
-  <script type="module" is:inline>
-    import { animate, inView } from "https://cdn.skypack.dev/motion";
+  <script is:inline>
+    (() => {
+      const el = document.getElementById("misionContent");
+      if (!el) return;
 
-    const misionContent = document.getElementById("misionContent");
+      const show = () => el.classList.add("show");
 
-    inView(
-      misionContent,
-      () => {
-        animate(
-          misionContent,
-          { opacity: 1 },
-          { duration: 0.8, easing: "ease-out" }
-        );
-      },
-      { margin: "-20% 0px" }
-    );
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        show();
+        return;
+      }
+
+      const rect = el.getBoundingClientRect();
+      if (rect.top < innerHeight && rect.bottom > 0) {
+        show();
+        return;
+      }
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            show();
+            io.disconnect();
+          }
+        },
+        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
+      );
+      io.observe(el);
+    })();
   </script>
 </section>
