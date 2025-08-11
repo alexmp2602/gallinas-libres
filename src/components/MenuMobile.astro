@@ -1,0 +1,86 @@
+---
+/* sin scripts, sin client:* */
+---
+
+<div class="md:hidden">
+  <!-- Toggle invisible que gobierna todo -->
+  <input id="nav-toggle" type="checkbox" class="peer hidden" />
+
+  <!-- Botón hamburguesa -->
+  <label
+    for="nav-toggle"
+    aria-label="Abrir menú"
+    class="p-2 rounded hover:bg-orange-100 active:scale-95 transition-transform duration-150 inline-flex items-center justify-center"
+  >
+    <!-- Ícono hamburguesa (SVG liviano) -->
+    <svg class="h-7 w-7 text-orange-800" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path>
+    </svg>
+  </label>
+
+  <!-- Overlay: clic para cerrar -->
+  <label
+    for="nav-toggle"
+    class="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm opacity-0 pointer-events-none
+           peer-checked:opacity-100 peer-checked:pointer-events-auto transition-opacity"
+    aria-hidden="true"></label>
+
+  <!-- Drawer -->
+  <aside
+    class="fixed inset-y-0 right-0 z-50 max-w-xs w-full bg-white/80 backdrop-blur-md
+           border-l border-neutral-200 shadow-2xl p-8 flex flex-col space-y-8
+           translate-x-full peer-checked:translate-x-0 transition-transform duration-300"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menú móvil"
+  >
+    <!-- Botón cerrar -->
+    <label
+      for="nav-toggle"
+      aria-label="Cerrar menú"
+      class="absolute top-6 right-6 p-2 rounded hover:bg-orange-100 active:scale-95 transition-transform duration-150 inline-flex"
+    >
+      <svg
+        class="h-7 w-7 text-orange-800"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"
+        ></path>
+      </svg>
+    </label>
+
+    <!-- Enlaces -->
+    <nav
+      class="mt-12 flex flex-col space-y-6 text-right"
+      aria-label="Navegación móvil"
+    >
+      <a
+        href="#nosotros"
+        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        onclick="document.getElementById('nav-toggle').checked=false"
+        >Nosotros</a
+      >
+      <a
+        href="#produccion"
+        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        onclick="document.getElementById('nav-toggle').checked=false"
+        >Producción</a
+      >
+      <a
+        href="#contacto"
+        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        onclick="document.getElementById('nav-toggle').checked=false"
+        >Contacto</a
+      >
+      <a
+        href="#ubicacion"
+        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        onclick="document.getElementById('nav-toggle').checked=false"
+        >Ubicación</a
+      >
+    </nav>
+  </aside>
+</div>

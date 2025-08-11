@@ -1,43 +1,28 @@
 ---
-import MenuMobile from "../components/MenuMobile";
+import MenuMobile from "../components/MenuMobile.astro";
 ---
 
 <header
-  class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md shadow transition-colors duration-300"
+  class="sticky top-0 z-50 w-full bg-white shadow transition-colors duration-300"
 >
   <div class="mx-auto flex items-center justify-between p-4 lg:px-16">
-    <!-- Logo (sin librerías, sin CLS) -->
     <a href="/" aria-label="Ir a inicio" class="block group">
-      <!-- Contenedor con tamaño fijo para reservar espacio -->
-      <div class="h-12 w-40 md:h-14 md:w-48">
-        <img
-          src="/img/logo/logo_2-1_transparente.png"
-          alt="Gallinas Libres - Logo"
-          class="h-full w-full object-contain transition-transform duration-200 group-hover:scale-[1.03] active:scale-95"
-          decoding="async"
-          fetchpriority="low"
-          draggable="false"
-        />
-      </div>
+      <img
+        src="/img/logo/logo_2-1_transparente.png"
+        alt="Gallinas Libres - Logo"
+        class="h-12 md:h-14 object-contain transition-transform duration-200 group-hover:scale-[1.03] active:scale-95"
+        decoding="async"
+        fetchpriority="low"
+      />
     </a>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8 font-medium text-neutral-800">
-      <a href="#nosotros" class="hover:text-orange-600 transition-colors"
-        >Nosotros</a
-      >
-      <a href="#produccion" class="hover:text-orange-600 transition-colors"
-        >Producción</a
-      >
-      <a href="#contacto" class="hover:text-orange-600 transition-colors"
-        >Contacto</a
-      >
-      <a href="#ubicacion" class="hover:text-orange-600 transition-colors"
-        >Ubicación</a
-      >
+    <nav class="hidden md:flex items-center gap-8 font-medium text-neutral-900">
+      <a href="#nosotros" class="hover:text-orange-900">Nosotros</a>
+      <a href="#produccion" class="hover:text-orange-900">Producción</a>
+      <a href="#contacto" class="hover:text-orange-900">Contacto</a>
+      <a href="#ubicacion" class="hover:text-orange-900">Ubicación</a>
     </nav>
 
-    <!-- Mobile Menu (hidrata sólo en pantallas chicas) -->
-    <MenuMobile client:media="(max-width: 767px)" />
+    <MenuMobile />
   </div>
 </header>

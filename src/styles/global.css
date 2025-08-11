@@ -40,7 +40,7 @@
   }
 
   a {
-    @apply text-orange-600 hover:text-orange-700 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
+    @apply text-orange-800 hover:text-orange-900 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
   }
   button,
   [type="button"],
