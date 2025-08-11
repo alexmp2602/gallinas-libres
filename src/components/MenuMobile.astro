@@ -1,15 +1,12 @@
----
-/* sin scripts, sin client:* */
----
-
 <div class="md:hidden">
-  <!-- Toggle invisible que gobierna todo -->
+  <!-- Toggle invisible -->
   <input id="nav-toggle" type="checkbox" class="peer hidden" />
 
   <!-- Botón hamburguesa -->
   <label
     for="nav-toggle"
     aria-label="Abrir menú"
+    aria-controls="mobile-drawer"
     class="p-2 rounded hover:bg-orange-100 active:scale-95 transition-transform duration-150 inline-flex items-center justify-center"
   >
     <!-- Ícono hamburguesa (SVG liviano) -->
@@ -21,30 +18,27 @@
   <!-- Overlay: clic para cerrar -->
   <label
     for="nav-toggle"
-    class="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm opacity-0 pointer-events-none
+    class="fixed inset-0 z-40 bg-black/30 supports-[backdrop-filter]:backdrop-blur-sm opacity-0 pointer-events-none
            peer-checked:opacity-100 peer-checked:pointer-events-auto transition-opacity"
-    aria-hidden="true"></label>
+    aria-hidden="true"
+  ></label>
 
-  <!-- Drawer -->
+  <!-- Drawer (sin role=dialog) -->
   <aside
-    class="fixed inset-y-0 right-0 z-50 max-w-xs w-full bg-white/80 backdrop-blur-md
+    id="mobile-drawer"
+    class="fixed inset-y-0 right-0 z-50 max-w-xs w-full supports-[backdrop-filter]:bg-white/80 bg-white supports-[backdrop-filter]:backdrop-blur-md
            border-l border-neutral-200 shadow-2xl p-8 flex flex-col space-y-8
            translate-x-full peer-checked:translate-x-0 transition-transform duration-300"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Menú móvil"
   >
+    <h2 id="mobile-menu-title" class="sr-only">Menú de navegación móvil</h2>
+
     <!-- Botón cerrar -->
     <label
       for="nav-toggle"
       aria-label="Cerrar menú"
       class="absolute top-6 right-6 p-2 rounded hover:bg-orange-100 active:scale-95 transition-transform duration-150 inline-flex"
     >
-      <svg
-        class="h-7 w-7 text-orange-800"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
+      <svg class="h-7 w-7 text-orange-800" viewBox="0 0 24 24" aria-hidden="true">
         <path
           fill="currentColor"
           d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"
@@ -53,34 +47,27 @@
     </label>
 
     <!-- Enlaces -->
-    <nav
-      class="mt-12 flex flex-col space-y-6 text-right"
-      aria-label="Navegación móvil"
-    >
+    <nav class="mt-12 flex flex-col space-y-6 text-right" aria-labelledby="mobile-menu-title">
       <a
         href="#nosotros"
-        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        class="text-lg font-medium text-neutral-900 hover:text-orange-800 transition-colors"
         onclick="document.getElementById('nav-toggle').checked=false"
-        >Nosotros</a
-      >
+      >Nosotros</a>
       <a
         href="#produccion"
-        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        class="text-lg font-medium text-neutral-900 hover:text-orange-800 transition-colors"
         onclick="document.getElementById('nav-toggle').checked=false"
-        >Producción</a
-      >
+      >Producción</a>
       <a
         href="#contacto"
-        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        class="text-lg font-medium text-neutral-900 hover:text-orange-800 transition-colors"
         onclick="document.getElementById('nav-toggle').checked=false"
-        >Contacto</a
-      >
+      >Contacto</a>
       <a
         href="#ubicacion"
-        class="text-lg font-medium hover:text-orange-900 transition-colors"
+        class="text-lg font-medium text-neutral-900 hover:text-orange-800 transition-colors"
         onclick="document.getElementById('nav-toggle').checked=false"
-        >Ubicación</a
-      >
+      >Ubicación</a>
     </nav>
   </aside>
 </div>
