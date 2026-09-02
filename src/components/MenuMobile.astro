@@ -1,12 +1,63 @@
 <div class="md:hidden">
-  <button id="menu-open" type="button" aria-label="Abrir menú" aria-controls="mobile-menu" aria-expanded="false" class="grid h-11 w-11 place-items-center rounded-full border border-white/40"><svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true"><path fill="currentColor" d="M4 7h16v2H4zm0 8h16v2H4z" /></svg></button>
-  <dialog id="mobile-menu" class="m-0 ml-auto h-full max-h-none w-[min(88vw,24rem)] max-w-none bg-cream p-0 text-ink backdrop:bg-ink/65 backdrop:backdrop-blur-sm">
-    <div class="flex h-full flex-col p-7"><div class="flex items-center justify-between border-b border-ink/15 pb-6"><span class="font-display text-2xl italic">Gallinas Libres</span><button id="menu-close" type="button" aria-label="Cerrar menú" class="grid h-11 w-11 place-items-center rounded-full border border-ink/20 text-2xl">×</button></div>
-      <nav class="mt-12 flex flex-col font-display text-4xl leading-[1.6]" aria-label="Navegación móvil"><a href="#nosotros">Nosotros</a><a href="#produccion">Producción</a><a href="#mayoristas">Mayoristas</a><a href="#ubicacion">Ubicación</a></nav><a href="#contacto" class="mt-auto rounded-full bg-forest px-6 py-4 text-center font-bold text-white">Consultar por mayorista</a>
+  <button
+    id="menu-open"
+    type="button"
+    aria-label="Abrir menú"
+    aria-controls="mobile-menu"
+    aria-expanded="false"
+    class="grid h-11 w-11 place-items-center rounded-full border border-white/40"
+  >
+    <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true">
+      <path fill="currentColor" d="M4 7h16v2H4zm0 8h16v2H4z"> </path>
+    </svg>
+  </button>
+  <dialog
+    id="mobile-menu"
+    class="m-0 ml-auto h-full max-h-none w-[min(88vw,24rem)] max-w-none bg-cream p-0 text-ink backdrop:bg-ink/65 backdrop:backdrop-blur-sm"
+  >
+    <div class="flex h-full flex-col p-7">
+      <div
+        class="flex items-center justify-between border-b border-ink/15 pb-6"
+      >
+        <span class="font-display text-2xl italic">Gallinas Libres</span>
+        <button
+          id="menu-close"
+          type="button"
+          aria-label="Cerrar menú"
+          class="grid h-11 w-11 place-items-center rounded-full border border-ink/20 text-2xl"
+          >×</button
+        >
+      </div>
+      <nav
+        class="mt-12 flex flex-col font-display text-4xl leading-[1.6]"
+        aria-label="Navegación móvil"
+      >
+        <a href="#nosotros">Nosotros</a>
+        <a href="#produccion">Producción</a>
+        <a href="#mayoristas">Mayoristas</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+      <a
+        href="#contacto"
+        class="mt-auto rounded-full bg-forest px-6 py-4 text-center font-bold text-white"
+        >Consultar por mayorista
+      </a>
     </div>
   </dialog>
   <script is:inline>
-    const dialog = document.querySelector('#mobile-menu'); const open = document.querySelector('#menu-open'); const close = document.querySelector('#menu-close');
-    open?.addEventListener('click', () => { dialog.showModal(); open.setAttribute('aria-expanded','true'); }); close?.addEventListener('click', () => dialog.close()); dialog?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => dialog.close())); dialog?.addEventListener('close', () => open?.setAttribute('aria-expanded','false'));
+    const dialog = document.querySelector("#mobile-menu");
+    const open = document.querySelector("#menu-open");
+    const close = document.querySelector("#menu-close");
+    open?.addEventListener("click", () => {
+      dialog.showModal();
+      open.setAttribute("aria-expanded", "true");
+    });
+    close?.addEventListener("click", () => dialog.close());
+    dialog
+      ?.querySelectorAll("a")
+      .forEach((a) => a.addEventListener("click", () => dialog.close()));
+    dialog?.addEventListener("close", () =>
+      open?.setAttribute("aria-expanded", "false"),
+    );
   </script>
 </div>

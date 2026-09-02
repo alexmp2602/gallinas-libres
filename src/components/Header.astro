@@ -6,30 +6,33 @@ import MenuMobile from "./MenuMobile.astro";
   <div
     class="site-container flex h-24 items-center justify-between border-b border-white/25"
   >
-    <a href="#inicio" aria-label="Gallinas Libres, ir al inicio"
-      ><img
-        src="/img/logo/logo_4-1_transparente.png"
-        alt="Gallinas Libres"
-        width="1200"
-        height="300"
-        class="h-12 w-auto brightness-0 invert md:h-14"
-      /></a
+    <a
+      href="#inicio"
+      aria-label="Gallinas Libres, ir al inicio"
+      class="inline-flex shrink-0 transition-transform hover:scale-[1.03]"
     >
+      <img
+        src="/img/logo/logo_1-1_transparente.png"
+        alt="Gallinas Libres"
+        width="500"
+        height="500"
+        class="h-18 w-18 object-contain drop-shadow-[0_3px_8px_rgba(0,0,0,0.35)] md:h-20 md:w-20"
+      />
+    </a>
     <nav
       aria-label="Navegación principal"
       class="hidden items-center gap-8 text-sm font-semibold md:flex"
     >
-      <a href="#nosotros" class="transition hover:text-yolk">Nosotros</a><a
-        href="#produccion"
-        class="transition hover:text-yolk">Producción</a
-      ><a href="#mayoristas" class="transition hover:text-yolk">Mayoristas</a><a
-        href="#ubicacion"
-        class="transition hover:text-yolk">Ubicación</a
-      ><a
+      <a href="#nosotros" class="transition hover:text-yolk">Nosotros</a>
+      <a href="#produccion" class="transition hover:text-yolk">Producción</a>
+      <a href="#mayoristas" class="transition hover:text-yolk">Mayoristas</a>
+      <a href="#ubicacion" class="transition hover:text-yolk">Ubicación</a>
+      <a
         href="#contacto"
         class="rounded-full bg-yolk px-5 py-3 font-bold text-ink transition hover:bg-white"
         >Hablemos</a
       >
-    </nav><MenuMobile />
+    </nav>
+    <MenuMobile />
   </div>
 </header>
