@@ -1,111 +1,35 @@
 ---
-const produccionItems = [
-  {
-    src: "/img/produccion/gallinas-libres.webp",
-    alt: "Gallinas libres en el campo",
-    title: "Gallinas libres",
-    description:
-      "Libertad de movimiento en sistemas de granero con áreas de cama y slat, permitiendo comportamientos naturales.",
-  },
-  {
-    src: "/img/produccion/gallinas.webp",
-    alt: "Gallinas recibiendo nutrición",
-    title: "Nutrición de calidad",
-    description:
-      "Dietas balanceadas con núcleos, vitaminas y minerales en proporciones exactas según la etapa, cuidando salud y productividad.",
-  },
-  {
-    src: "/img/produccion/yema.webp",
-    alt: "Yema de huevo fresco",
-    title: "Calidad de huevo",
-    description:
-      "Huevos de excelente tamaño, color y resistencia de cáscara, con frescura garantizada en cada entrega.",
-  },
-  {
-    src: "/img/produccion/maples30.webp",
-    alt: "Maples de huevos para mayoristas",
-    title: "Entrega confiable",
-    description:
-      "Huevos recolectados diariamente y entregados en tiempo y forma, listos para abastecer comercios y mayoristas.",
-  },
+const etapas = [
+  { number: "01", title: "Cuidado", text: "Acompañamos cada etapa de vida respetando el comportamiento natural y el bienestar de nuestras gallinas." },
+  { number: "02", title: "Alimentación", text: "Preparamos dietas balanceadas con vitaminas y minerales, ajustadas con precisión según cada etapa." },
+  { number: "03", title: "Recolección", text: "Recolectamos todos los días para preservar la frescura, el sabor y la calidad de cada huevo." },
+  { number: "04", title: "Distribución", text: "Preparamos los pedidos y coordinamos entregas regulares para comercios y clientes mayoristas." },
 ];
 ---
 
-<section
-  id="produccion"
-  aria-labelledby="produccion-title"
-  class="section bg-orange-50 overflow-hidden scroll-mt-12 cv-auto contain-layout"
->
-  <div
-    id="produccionContent"
-    class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center space-y-8"
-  >
-    <h2 id="produccion-title" class="section-title text-orange-800">
-      Nuestra producción
-    </h2>
+<section id="produccion" aria-labelledby="produccion-title" class="bg-cream py-24 md:py-36">
+  <div class="site-container">
+    <div class="reveal max-w-3xl">
+      <p class="eyebrow mb-5 text-clay">Del campo a tu comercio</p>
+      <h2 id="produccion-title" class="font-display text-5xl leading-none tracking-tight md:text-7xl">
+        Un proceso simple.<br />
+        <em class="font-normal text-leaf">Hecho con cuidado.</em>
+      </h2>
+    </div>
 
-    <p class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-800 leading-relaxed mb-8">
-      Seguimos el <strong>manual oficial Hy-Line Brown</strong>, proporcionando
-      una alimentación balanceada con núcleos, vitaminas y minerales de calidad,
-      ajustada con precisión según cada etapa de vida y postura de nuestras
-      gallinas. Así garantizamos su salud, bienestar y productividad, logrando
-      huevos de excelente calidad y consistencia para tu negocio.
-    </p>
-
-    <div id="produccionGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-      {produccionItems.map((item) => (
-        <article class="produccion-item flex flex-col items-center text-center space-y-3 fade-slide-up" tabindex="0">
-          <!-- Usamos aspect ratio para 0 CLS + width/height como pista -->
-          <img
-            src={item.src}
-            alt={item.alt}
-            width="800" height="600"
-            loading="lazy" decoding="async" fetchpriority="low"
-            class="rounded-lg shadow-md w-full aspect-[4/3] object-cover"
-          />
-          <h3 class="text-lg font-semibold">{item.title}</h3>
-          <p class="text-neutral-700 max-w-xs">{item.description}</p>
+    <div class="mt-16 border-t border-ink/20">
+      {etapas.map((etapa, index) => (
+        <article class="reveal grid gap-4 border-b border-ink/20 py-8 md:grid-cols-[6rem_1fr_1fr] md:items-start md:gap-10 md:py-11">
+          <span class="font-display text-2xl text-clay">{etapa.number}</span>
+          <h3 class="font-display text-4xl md:text-5xl">{etapa.title}</h3>
+          <p class="max-w-lg leading-7 text-ink/65">{etapa.text}</p>
+          {index === 1 && (
+            <p class="text-xs font-bold uppercase tracking-widest text-leaf md:col-start-3">
+              Basado en lineamientos Hy-Line Brown
+            </p>
+          )}
         </article>
       ))}
     </div>
   </div>
-
-  <!-- Stagger reveal sin librerías -->
-  <script is:inline>
-    (() => {
-      const grid = document.getElementById("produccionGrid");
-      if (!grid) return;
-
-      const items = Array.from(grid.querySelectorAll(".produccion-item"));
-
-      const showAll = () => {
-        items.forEach((el, i) => {
-          el.style.transitionDelay = `${i * 70}ms`;
-          el.classList.add("show");
-        });
-      };
-
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        showAll();
-        return;
-      }
-
-      const rect = grid.getBoundingClientRect();
-      if (rect.top < innerHeight && rect.bottom > 0) {
-        showAll();
-        return;
-      }
-
-      const io = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((e) => e.isIntersecting)) {
-            showAll();
-            io.disconnect();
-          }
-        },
-        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
-      );
-      io.observe(grid);
-    })();
-  </script>
 </section>

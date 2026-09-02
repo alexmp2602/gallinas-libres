@@ -1,51 +1,79 @@
-<section
-  id="nosotros"
-  aria-labelledby="mision-title"
-  class="section bg-orange-50 overflow-hidden scroll-mt-12 cv-auto contain-layout"
->
-  <div id="misionContent" class="container text-center space-y-6 fade-slide-up">
-    <h2 id="mision-title" class="section-title text-orange-800">
-      Nuestra misión
-    </h2>
-    <p
-      class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-800 leading-relaxed"
-    >
-      Nuestra misión es promover el bienestar de nuestras gallinas, respetando
-      su libertad y su naturaleza, mientras abastecemos a comercios y mayoristas
-      con huevos frescos de alta calidad. Creemos que una alimentación sana
-      comienza con un cuidado responsable, ofreciendo productos que cuidan el
-      planeta, a los animales y a quienes confían en nosotros para su negocio.
-    </p>
+---
+const atributos = [
+  "Movimiento libre",
+  "Alimentación balanceada",
+  "Recolección diaria",
+  "Producción local",
+];
+---
+
+<section id="nosotros" aria-labelledby="mision-title" class="py-24 md:py-36">
+  <div class="site-container grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+    <div class="reveal">
+      <p class="eyebrow mb-5 text-clay">Nuestra forma de producir</p>
+      <p class="max-w-xs text-sm leading-7 text-ink/65">
+        Gallinas Libres nació en el campo, con una idea sencilla: hacer las
+        cosas bien desde el origen.
+      </p>
+    </div>
+
+    <div class="reveal">
+      <h2
+        id="mision-title"
+        class="font-display text-balance text-5xl leading-[1.02] tracking-tight md:text-7xl"
+      >
+        El bienestar no es un discurso. Es
+        <em class="font-normal text-leaf">cómo trabajamos.</em>
+      </h2>
+      <p class="mt-8 max-w-2xl text-lg leading-8 text-ink/70">
+        Respetamos la libertad y la naturaleza de nuestras gallinas mientras
+        producimos huevos frescos, consistentes y confiables. Porque la calidad
+        que llega a tu negocio empieza mucho antes: en el cuidado diario.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Principios de producción" class="pb-24 md:pb-36">
+  <div class="site-container grid gap-5 md:grid-cols-12 md:grid-rows-[17rem_19rem]">
+    <figure class="reveal overflow-hidden rounded-[1.5rem] md:col-span-7 md:row-span-2">
+      <img
+        src="/img/produccion/gallinas-libres.webp"
+        alt="Gallinas caminando al aire libre"
+        width="688"
+        height="688"
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover transition duration-700 hover:scale-[1.02]"
+      />
+    </figure>
+
+    <div class="reveal flex flex-col justify-between rounded-[1.5rem] bg-forest p-8 text-white md:col-span-5 md:p-10">
+      <span aria-hidden="true" class="font-display text-7xl text-yolk">“</span>
+      <p class="font-display text-3xl leading-tight md:text-4xl">
+        Libres de verdad. Cuidadas todos los días.
+      </p>
+    </div>
+
+    <figure class="reveal overflow-hidden rounded-[1.5rem] md:col-span-5">
+      <img
+        src="/img/produccion/huevos.webp"
+        alt="Huevos frescos recién recolectados"
+        width="853"
+        height="854"
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover"
+      />
+    </figure>
   </div>
 
-  <script is:inline>
-    (() => {
-      const el = document.getElementById("misionContent");
-      if (!el) return;
-
-      const show = () => el.classList.add("show");
-
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        show();
-        return;
-      }
-
-      const rect = el.getBoundingClientRect();
-      if (rect.top < innerHeight && rect.bottom > 0) {
-        show();
-        return;
-      }
-
-      const io = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((e) => e.isIntersecting)) {
-            show();
-            io.disconnect();
-          }
-        },
-        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
-      );
-      io.observe(el);
-    })();
-  </script>
+  <div class="site-container mt-10 grid gap-px overflow-hidden rounded-2xl bg-ink/15 sm:grid-cols-2 lg:grid-cols-4">
+    {atributos.map((atributo, index) => (
+      <div class="reveal bg-paper p-6">
+        <span class="mb-8 block font-display text-3xl text-clay">0{index + 1}</span>
+        <p class="font-semibold">{atributo}</p>
+      </div>
+    ))}
+  </div>
 </section>

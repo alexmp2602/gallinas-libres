@@ -1,108 +1,51 @@
 ---
 const HERO_SRC = "/img/hero-gallinas.webp";
-const LOGO_SRC = "/img/logo/logo_2-1_transparente.png";
 ---
 
 <section
-  id="hero"
+  id="inicio"
   aria-labelledby="hero-title"
-  class="relative flex flex-col items-center justify-center overflow-hidden px-4 py-12 text-center contain-layout"
-  style="min-height: calc(var(--vh, 1vh) * 80);"
+  class="grain relative flex min-h-[44rem] items-end overflow-hidden bg-forest text-white md:min-h-screen"
 >
-  <!-- Fondo principal -->
   <img
-    id="hero-lcp"
     src={HERO_SRC}
-    alt=""
-    aria-hidden="true"
-    width="995"
-    height="557"
+    alt="Gallinas recorriendo libremente el campo"
+    width="1673"
+    height="940"
     decoding="async"
     fetchpriority="high"
-    class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+    class="absolute inset-0 h-full w-full object-cover"
   />
 
-  <div class="absolute inset-0 -z-10 bg-white/60 backdrop-blur-md"></div>
-
-  <!-- Contenido -->
   <div
-    id="heroContent"
-    class="relative z-10 mx-auto max-w-xl translate-y-6 opacity-0 transition-[opacity,transform] duration-700 ease-out will-change-transform"
-  >
-    <img
-      src={LOGO_SRC}
-      alt="Gallinas Libres"
-      class="mx-auto h-auto w-56 drop-shadow-md sm:w-64"
-      width="707"
-      height="353"
-      loading="lazy"
-      decoding="async"
-    />
+    class="absolute inset-0 bg-[linear-gradient(90deg,rgba(19,29,17,.82)_0%,rgba(19,29,17,.38)_58%,rgba(19,29,17,.15)_100%)]"
+  ></div>
+
+  <div class="site-container relative z-10 pb-14 pt-40 md:pb-20">
+    <p class="eyebrow mb-6 text-yolk">Producción local · Goldney</p>
 
     <h1
       id="hero-title"
-      class="mt-4 font-sans text-3xl font-extrabold leading-tight text-neutral-900 sm:text-4xl md:text-5xl"
+      class="font-display max-w-4xl text-balance text-[clamp(3.5rem,8vw,7.5rem)] leading-[.89] tracking-[-.05em]"
     >
-      Huevos frescos de gallinas felices
+      Huevos de gallinas que viven
+      <em class="font-normal text-yolk">libres.</em>
     </h1>
 
-    <p class="mx-auto mt-4 max-w-lg text-base text-neutral-800 sm:text-lg">
-      Suministramos huevos de calidad de gallinas libres para tu negocio con
-      entregas seguras y regulares.
-    </p>
-
-    <a
-      id="heroCTA"
-      href="#contacto"
-      class="mt-6 inline-block rounded-md bg-orange-700 px-6 py-3 font-medium text-white shadow transition hover:bg-orange-800 active:bg-orange-900 focus:outline-none focus:ring-2 focus:ring-orange-700 focus:ring-offset-2"
+    <div
+      class="mt-9 flex max-w-3xl flex-col gap-7 border-t border-white/30 pt-7 md:flex-row md:items-center md:justify-between"
     >
-      Consultar pedidos mayoristas
-    </a>
+      <p class="max-w-xl text-lg leading-relaxed text-white/85">
+        Producción responsable y abastecimiento de huevos frescos para
+        comercios y mayoristas.
+      </p>
+
+      <a
+        href="#contacto"
+        class="inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-yolk px-6 py-4 font-bold text-ink transition hover:bg-white"
+      >
+        Consultar por mayorista <span aria-hidden="true">↗</span>
+      </a>
+    </div>
   </div>
-
-  <script is:inline>
-    (() => {
-      const element = document.getElementById("heroContent");
-
-      if (!element) return;
-
-      const show = () => {
-        element.style.opacity = "1";
-        element.style.transform = "translateY(0)";
-      };
-
-      const rect = element.getBoundingClientRect();
-
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        show();
-        return;
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            show();
-            observer.disconnect();
-          }
-        },
-        {
-          root: null,
-          rootMargin: "-20% 0px",
-          threshold: 0.01,
-        },
-      );
-
-      observer.observe(element);
-    })();
-  </script>
-
-  <style is:global>
-    @media (prefers-reduced-motion: reduce) {
-      #heroContent {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-  </style>
 </section>
