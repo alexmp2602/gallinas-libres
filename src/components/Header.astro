@@ -1,11 +1,35 @@
 ---
 import MenuMobile from "./MenuMobile.astro";
 ---
+
 <header class="absolute inset-x-0 top-0 z-50 text-white">
-  <div class="site-container flex h-24 items-center justify-between border-b border-white/25">
-    <a href="#inicio" aria-label="Gallinas Libres, ir al inicio"><img src="/img/logo/logo_4-1_transparente.png" alt="Gallinas Libres" width="1200" height="300" class="h-12 w-auto brightness-0 invert md:h-14" /></a>
-    <nav aria-label="Navegación principal" class="hidden items-center gap-8 text-sm font-semibold md:flex">
-      <a href="#nosotros" class="transition hover:text-yolk">Nosotros</a><a href="#produccion" class="transition hover:text-yolk">Producción</a><a href="#mayoristas" class="transition hover:text-yolk">Mayoristas</a><a href="#ubicacion" class="transition hover:text-yolk">Ubicación</a><a href="#contacto" class="rounded-full bg-yolk px-5 py-3 font-bold text-ink transition hover:bg-white">Hablemos</a>
+  <div
+    class="site-container flex h-24 items-center justify-between border-b border-white/25"
+  >
+    <a href="#inicio" aria-label="Gallinas Libres, ir al inicio"
+      ><img
+        src="/img/logo/logo_4-1_transparente.png"
+        alt="Gallinas Libres"
+        width="1200"
+        height="300"
+        class="h-12 w-auto brightness-0 invert md:h-14"
+      /></a
+    >
+    <nav
+      aria-label="Navegación principal"
+      class="hidden items-center gap-8 text-sm font-semibold md:flex"
+    >
+      <a href="#nosotros" class="transition hover:text-yolk">Nosotros</a><a
+        href="#produccion"
+        class="transition hover:text-yolk">Producción</a
+      ><a href="#mayoristas" class="transition hover:text-yolk">Mayoristas</a><a
+        href="#ubicacion"
+        class="transition hover:text-yolk">Ubicación</a
+      ><a
+        href="#contacto"
+        class="rounded-full bg-yolk px-5 py-3 font-bold text-ink transition hover:bg-white"
+        >Hablemos</a
+      >
     </nav><MenuMobile />
   </div>
 </header>

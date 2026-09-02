@@ -1,51 +1,38 @@
 ---
-/* Hero optimizado para 995×557: generar hero-gallinas-{768,995}.(avif|webp|jpg) */
-const HERO_BASE = "/img/hero/hero-gallinas";
+const HERO_SRC = "/img/hero-gallinas.webp";
 const LOGO_SRC = "/img/logo/logo_2-1_transparente.png";
 ---
 
 <section
   id="hero"
   aria-labelledby="hero-title"
-  class="relative flex flex-col items-center justify-center text-center overflow-hidden px-4 py-12 contain-layout"
+  class="relative flex flex-col items-center justify-center overflow-hidden px-4 py-12 text-center contain-layout"
   style="min-height: calc(var(--vh, 1vh) * 80);"
 >
-  <!-- Fondo (LCP) -->
-  <picture class="absolute inset-0 -z-10">
-    <source
-      type="image/avif"
-      srcset={`${HERO_BASE}-768.avif 768w, ${HERO_BASE}-995.avif 995w`}
-      sizes="100vw"
-    />
-    <source
-      type="image/webp"
-      srcset={`${HERO_BASE}-768.webp 768w, ${HERO_BASE}-995.webp 995w`}
-      sizes="100vw"
-    />
-    <img
-      id="hero-lcp"
-      src={`${HERO_BASE}-995.jpg`}
-      alt=""
-      aria-hidden="true"
-      width="995"
-      height="557"
-      decoding="async"
-      fetchpriority="high"
-      class="w-full h-full object-cover object-center"
-    />
-  </picture>
+  <!-- Fondo principal -->
+  <img
+    id="hero-lcp"
+    src={HERO_SRC}
+    alt=""
+    aria-hidden="true"
+    width="995"
+    height="557"
+    decoding="async"
+    fetchpriority="high"
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+  />
 
-  <div class="absolute inset-0 bg-white/60 backdrop-blur-md -z-10"></div>
+  <div class="absolute inset-0 -z-10 bg-white/60 backdrop-blur-md"></div>
 
   <!-- Contenido -->
   <div
     id="heroContent"
-    class="relative z-10 max-w-xl mx-auto opacity-0 translate-y-6 transition-[opacity,transform] duration-700 ease-out will-change-transform"
+    class="relative z-10 mx-auto max-w-xl translate-y-6 opacity-0 transition-[opacity,transform] duration-700 ease-out will-change-transform"
   >
     <img
       src={LOGO_SRC}
-      alt="Gallinas Libres - Logo"
-      class="w-56 sm:w-64 h-auto mx-auto drop-shadow-md"
+      alt="Gallinas Libres"
+      class="mx-auto h-auto w-56 drop-shadow-md sm:w-64"
       width="707"
       height="353"
       loading="lazy"
@@ -54,12 +41,12 @@ const LOGO_SRC = "/img/logo/logo_2-1_transparente.png";
 
     <h1
       id="hero-title"
-      class="mt-4 text-3xl sm:text-4xl md:text-5xl font-sans font-extrabold text-neutral-900 leading-tight"
+      class="mt-4 font-sans text-3xl font-extrabold leading-tight text-neutral-900 sm:text-4xl md:text-5xl"
     >
       Huevos frescos de gallinas felices
     </h1>
 
-    <p class="mt-4 max-w-lg mx-auto text-base sm:text-lg text-neutral-800">
+    <p class="mx-auto mt-4 max-w-lg text-base text-neutral-800 sm:text-lg">
       Suministramos huevos de calidad de gallinas libres para tu negocio con
       entregas seguras y regulares.
     </p>
@@ -67,47 +54,54 @@ const LOGO_SRC = "/img/logo/logo_2-1_transparente.png";
     <a
       id="heroCTA"
       href="#contacto"
-      class="mt-6 inline-block bg-orange-700 text-white font-medium px-6 py-3 rounded-md shadow
-         transition focus:outline-none focus:ring-2 focus:ring-orange-700 focus:ring-offset-2
-         hover:bg-orange-800 active:bg-orange-900"
+      class="mt-6 inline-block rounded-md bg-orange-700 px-6 py-3 font-medium text-white shadow transition hover:bg-orange-800 active:bg-orange-900 focus:outline-none focus:ring-2 focus:ring-orange-700 focus:ring-offset-2"
     >
       Consultar pedidos mayoristas
     </a>
   </div>
 
-  <!-- Reveal simple sin librerías -->
   <script is:inline>
     (() => {
-      const el = document.getElementById("heroContent");
-      if (!el) return;
+      const element = document.getElementById("heroContent");
+
+      if (!element) return;
+
       const show = () => {
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
+        element.style.opacity = "1";
+        element.style.transform = "translateY(0)";
       };
-      const rect = el.getBoundingClientRect();
-      if (rect.top < innerHeight && rect.bottom > 0) {
+
+      const rect = element.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
         show();
         return;
       }
-      const io = new IntersectionObserver(
+
+      const observer = new IntersectionObserver(
         (entries) => {
-          if (entries.some((e) => e.isIntersecting)) {
+          if (entries.some((entry) => entry.isIntersecting)) {
             show();
-            io.disconnect();
+            observer.disconnect();
           }
         },
-        { root: null, rootMargin: "-20% 0px", threshold: 0.01 }
+        {
+          root: null,
+          rootMargin: "-20% 0px",
+          threshold: 0.01,
+        },
       );
-      io.observe(el);
+
+      observer.observe(element);
     })();
   </script>
 
   <style is:global>
     @media (prefers-reduced-motion: reduce) {
       #heroContent {
-        transition: none !important;
         opacity: 1 !important;
         transform: none !important;
+        transition: none !important;
       }
     }
   </style>
